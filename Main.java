@@ -5,9 +5,8 @@ public class Main {
 	public static void Main() {
 		
 		Cliente pessoa;
-		pessoa = new Cliente();
 		
-		pessoa.setCpf("120.102.984-89");
+		pessoa = new Cliente("claudio","120.102.984-89","10/04/2004",18,"rua lalaialalaia");
 		
 		pessoa.getCpf();
 		}

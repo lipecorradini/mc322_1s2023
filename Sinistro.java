@@ -7,16 +7,21 @@ public class Sinistro {
 		private String data;
 		private String endereco;
 		
-		public int getId() {
+		public Sinistro(int id, String data, String endereco){
+	        this.id = generateId();
+	        this.data = data;
+	        this.endereco = endereco;
+	    }
+		
+		private int generateId() {
 			
 			Random gerador = new Random();
-			int novoId = 0;
-			for(int i = 0; i < 10; i++) {
-				
-				int digito = gerador.nextInt();
-				int expoente = 9 - i;
-				novoId += digito*(Math.pow(10, expoente));
+			int novoId = gerador.nextInt();
+			return novoId;
+			
 		}
+		
+		public int getId() {
 			return id;
 		}
 		
