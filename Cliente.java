@@ -71,31 +71,33 @@ public class Cliente {
 		
 		//Calculando e validando os dígitos verificadores
 		// calculando o primeiro digito
-		// falta verificar se o resto for maior que 10 o numero vira 0
 		
 		char primeiroDigitoVerificador = cpfNumerico.charAt(9);
 		char segundoDigitoVerificador = cpfNumerico.charAt(10);
 		int somaPrimeiro = 0, somaSegundo = 0;
 		
 		for(int i = 0; i < 9; i++) {
-			somaPrimeiro += cpfNumerico.charAt(i)*(10 - i);
+			int valorInteiro = Character.getNumericValue(cpfNumerico.charAt(i));
+			somaPrimeiro += valorInteiro*(10 - i);
 		}
 		
 		int restoPrimeiro = somaPrimeiro % 11;
 		int resultadoPrimeiro = 11 - restoPrimeiro;
+		if(resultadoPrimeiro >= 10) resultadoPrimeiro = 0;
 		if(resultadoPrimeiro != primeiroDigitoVerificador) return false;
 		
 		//calculando o segundo digito
 		
 		for(int j = 0; j < 10; j++) {
-			somaSegundo += cpfNumerico.charAt(j)*(11 - j);
+			int valorInteiro = Character.getNumericValue(cpfNumerico.charAt(j));
+			somaSegundo += valorInteiro*(11 - j);
 		}
 		int restoSegundo = somaSegundo % 11;
 		int resultadoSegundo = 11 - restoSegundo;
+		if(resultadoSegundo >= 10) resultadoSegundo = 0;
 		if(resultadoSegundo != segundoDigitoVerificador) return false;
 		
-		
-		
+		return true;
 	}
 	
 
