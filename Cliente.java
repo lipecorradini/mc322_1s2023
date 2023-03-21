@@ -64,6 +64,7 @@ public class Cliente {
 	public boolean validarCPF(String cpf) {
 		
 		// Removendo caracteres nao numericos
+
 		String cpfNumerico = cpf.replaceAll( "[^\\d]", "" );
 		if (cpfNumerico.length() != 11) return false;
 	
@@ -81,8 +82,9 @@ public class Cliente {
 		//Calculando e validando os dígitos verificadores
 		// calculando o primeiro digito
 		
-		char primeiroDigitoVerificador = cpfNumerico.charAt(9);
-		char segundoDigitoVerificador = cpfNumerico.charAt(10);
+		int primeiroDigitoVerificador = Character.getNumericValue(cpfNumerico.charAt(9));
+
+		int segundoDigitoVerificador = Character.getNumericValue(cpfNumerico.charAt(10));
 		int somaPrimeiro = 0, somaSegundo = 0;
 		
 		for(int i = 0; i < 9; i++) {
@@ -93,10 +95,11 @@ public class Cliente {
 		int restoPrimeiro = somaPrimeiro % 11;
 		int resultadoPrimeiro = 11 - restoPrimeiro;
 		if(resultadoPrimeiro >= 10) resultadoPrimeiro = 0;
-		if(resultadoPrimeiro != primeiroDigitoVerificador) return false;
+
+		if((int)resultadoPrimeiro != (int)primeiroDigitoVerificador) return false;
 		
 		//calculando o segundo digito
-		
+	
 		for(int j = 0; j < 10; j++) {
 			int valorInteiro = Character.getNumericValue(cpfNumerico.charAt(j));
 			somaSegundo += valorInteiro*(11 - j);

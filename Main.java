@@ -2,13 +2,13 @@ package mc322_1s2023;
 
 public class Main {
 	
-	public static void Main() {
+	public static void main(String[] args) {
 		
-		Cliente pessoa;
+		Cliente pessoa = new Cliente("claudio", "000.000.000-0", 
+		"10/04/2004", 18, "longe");
+		boolean valor = pessoa.validarCPF(pessoa.getCpf());
 		
-		pessoa = new Cliente("claudio","120.102.984-89","10/04/2004",18,"rua lalaialalaia");
-		
-		pessoa.getCpf();
-		}
+		System.out.println(valor);
+	}
     
 }
