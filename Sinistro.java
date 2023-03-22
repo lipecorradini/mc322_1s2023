@@ -7,7 +7,7 @@ public class Sinistro {
 		private String data;
 		private String endereco;
 		
-		public Sinistro(int id, String data, String endereco){
+		public Sinistro(String data, String endereco){
 	        this.id = generateId();
 	        this.data = data;
 	        this.endereco = endereco;
@@ -16,7 +16,8 @@ public class Sinistro {
 		private int generateId() {
 			
 			Random gerador = new Random();
-			int novoId = gerador.nextInt();
+			int limite = 999999999;
+			int novoId = gerador.nextInt(limite);
 			return novoId;
 			
 		}

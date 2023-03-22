@@ -30,6 +30,7 @@ public class Main {
 		boolean ehValido = pessoa.validarCPF(pessoa.getCpf());
 		System.out.println("o cpf eh valido: " + ehValido);
 
+
 		//Veiculo
 		
 		Veiculo carro = new Veiculo("NNT-4822", "Suzuki", "Gran Vitara");
@@ -38,6 +39,24 @@ public class Main {
 		System.out.println(carro.getPlaca());
 
 
+		//Seguradora
+
+		Seguradora informacoesSeguradora = new Seguradora("jose claudio fonseca teles", "81 997282004"
+		, "luizcorradini@gmail.com", "av zuppi 27");
+
+		informacoesSeguradora.setNome("marcos jose silva");
+		System.out.println(informacoesSeguradora.getNome());
+
+
+		//Sinistro
+
+		Sinistro sinistroDaSeguradora = new Sinistro("21/03/2023", "av zuppi 27");
+
+		System.out.println(sinistroDaSeguradora.getId());
+		
+		sinistroDaSeguradora.setData("11/11/2011");
+		System.out.println(sinistroDaSeguradora.getData());
+	
 	}
     
 }
