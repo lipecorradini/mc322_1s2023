@@ -1,4 +1,4 @@
-package mc322_1s2023;
+
 import java.util.Random;
 
 public class Sinistro {
