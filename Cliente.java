@@ -58,7 +58,8 @@ public class Cliente {
 	} 
 	
 	public String toString() {
-		return nome;
+		String tudo = "nome: " + nome + "\n Cpf: " + cpf + "\n Data de Nascimento: " + dataNascimento + "\n Idade: " + idade + "\n Endereco: " + endereco;
+		return tudo;
 	}
 	
 	public boolean validarCPF(String cpf) {
