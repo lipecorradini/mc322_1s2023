@@ -1,15 +1,24 @@
 import java.util.*;
 
-
 public class ClientePF extends Cliente {
 
+	private Date dataLicenca;
+	private String educacao;
+	private String genero;
+	private String classeEconomica;
     private String cpf;
     private Date dataNascimento;
+	
 
     public ClientePF( String nome , String endereco , Date dataLicenca ,
      String educacao , String genero , String classeEconomica ,
      List < Veiculo > listaVeiculos , String cpf , Date dataNascimento){      
-        super ( nome , endereco , dataLicenca , educacao , genero , classeEconomica , listaVeiculos );
+
+        super ( nome , endereco , listaVeiculos );
+		this.dataLicenca = dataLicenca;
+		this.educacao = educacao;
+		this.genero = genero;
+		this.classeEconomica = classeEconomica;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
     }
@@ -29,6 +38,39 @@ public class ClientePF extends Cliente {
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
+
+	public Date getDataLicenca(){
+		return dataLicenca;
+	}
+
+	public void setDataLicenca(Date dataLicenca){
+		this.dataLicenca = dataLicenca;
+	}
+	
+	public String getEducacao(){
+		return educacao;
+	}
+	
+	public void setEducacao(String educacao){
+		this.educacao = educacao;
+	}
+	
+	public String getGenero() {
+		return genero;
+	}
+	
+	public void setGenero(String genero){
+	    this.genero = genero;
+	}
+
+	public String getClasseEconomica() {
+		return classeEconomica;
+	}
+	
+	public void setClasseEconomica(String classeEconomica){
+	    this.classeEconomica = classeEconomica;
+	}
+
 
     @Override
 

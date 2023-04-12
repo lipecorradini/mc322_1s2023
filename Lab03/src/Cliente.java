@@ -12,13 +12,9 @@ public class Cliente {
 	private List<Veiculo> listaVeiculos;
 
 	
-	public Cliente(String nome, String endereco, Date dataLicenca, String educacao, String genero, String classeEconomica, List<Veiculo> listaVeiculos){
+	public Cliente(String nome, String endereco, List<Veiculo> listaVeiculos){
         this.nome = nome;
         this.endereco = endereco;
-        this.dataLicenca = dataLicenca;
-		this.educacao = educacao;
-		this.genero = genero;
-		this.classeEconomica = classeEconomica;
 		this.listaVeiculos = listaVeiculos;
 
     }
@@ -39,38 +35,7 @@ public class Cliente {
 	    this.endereco = endereco;
 	} 
 
-	public Date getDataLicenca(){
-		return dataLicenca;
-	}
-
-	public void setDataLicenca(Date dataLicenca){
-		this.dataLicenca = dataLicenca;
-	}
 	
-	public String getEducacao(){
-		return educacao;
-	}
-	
-	public void setEducacao(String educacao){
-		this.educacao = educacao;
-	}
-	
-	public String getGenero() {
-		return genero;
-	}
-	
-	public void setGenero(String genero){
-	    this.genero = genero;
-	}
-
-	public String getClasseEconomica() {
-		return classeEconomica;
-	}
-	
-	public void setClasseEconomica(String classeEconomica){
-	    this.classeEconomica = classeEconomica;
-	}
-
 	public List<Veiculo> getListaVeiculos() {
 		return listaVeiculos;
 	}

@@ -6,10 +6,10 @@ public class ClientePJ extends Cliente{
     private Date dataFundacao;
 
     public ClientePJ(String nome , String endereco , Date dataLicenca ,
-     String educacao , String genero , String classeEconomica ,
-     List < Veiculo > listaVeiculos , String CNPJ , Date dataFundacao){
+                     String educacao , String genero , String classeEconomica ,
+                     List < Veiculo > listaVeiculos , String CNPJ , Date dataFundacao){
 
-        super ( nome , endereco , dataLicenca , educacao , genero , classeEconomica , listaVeiculos );
+        super ( nome , endereco , listaVeiculos );
         this.CNPJ = CNPJ;
         this.dataFundacao = dataFundacao;
     }
@@ -37,8 +37,12 @@ public class ClientePJ extends Cliente{
         return tudo;
     }
 
-    
+    public boolean validarCNPJ(String CNPJ){
+        
+
+        return true;
+
+    }
 
 
-    
 }
