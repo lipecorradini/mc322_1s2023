@@ -46,7 +46,7 @@ public class Cliente {
 
 	public String toString() {
 		String tudo = "nome: " + nome + "\n endereco: " + endereco + "\n Educacao: " + educacao + "\n genero: " + genero + "\n classe economica: " + classeEconomica +
-		 "\n lista de veiculos: " + listaVeiculos;
+		 "\n lista de veiculos: " + listaVeiculos + "\n data licenca: " + dataLicenca;
 		return tudo;
 	}
 	
