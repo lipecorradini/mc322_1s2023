@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.time.LocalDate;
 public class Seguradora {
     
     private String nome;
@@ -60,8 +60,7 @@ public class Seguradora {
     }
     
     public boolean cadastrarCliente(Cliente cliente){
-        // verificar se tem alguem com o mesmo cpf ou cnpj, se tiver retornar false
-        // verifficar se tem espaco para colocar na lista
+        
         if (listaClientes.indexOf(cliente) == -1){
             listaClientes.add(cliente);
             return true;
@@ -101,15 +100,16 @@ public class Seguradora {
             return listaAuxiliar;
     }
 
-    public boolean gerarSinistro(){
+    public boolean gerarSinistro(Veiculo veiculo, Cliente cliente){
 
         Seguradora seguradora = new Seguradora(nome, telefone, email,  endereco, listaSinistro, listaClientes);
+        LocalDate dataAgora = LocalDate.now();
+        String dataAgoraString = dataAgora.toString();
         
-        Sinistro sinistro = new Sinistro(email, endereco, seguradora, null, null);
+        Sinistro sinistro = new Sinistro(dataAgoraString, endereco, seguradora, veiculo, cliente);
         listaSinistro.add(sinistro);
 
         return true;
-        
     }
 
     public boolean visualizarSinistro(String cliente){ // usar o tostring
