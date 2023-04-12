@@ -11,7 +11,7 @@ public class Seguradora {
 
     //Construtor
 
-    public Seguradora(String nome, String telefone, String email, String endereco, List <Sinistro> listaSinistro, ArrayList <Cliente> listaClientes){
+    public Seguradora(String nome, String telefone, String email, String endereco, ArrayList <Sinistro> listaSinistro, ArrayList <Cliente> listaClientes){
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
