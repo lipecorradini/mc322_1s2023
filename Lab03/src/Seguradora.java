@@ -81,9 +81,9 @@ public class Seguradora {
 
     }
 
-    public List<Cliente> listarClientes(String tipoCliente){
+    public ArrayList<Cliente> listarClientes(String tipoCliente){
 
-        List<Cliente> listaAuxiliar = new ArrayList<Cliente>();
+        ArrayList<Cliente> listaAuxiliar = new ArrayList<Cliente>();
 
         for(Cliente clienteInfo : listaClientes){
             if(tipoCliente == "ClientePJ" && clienteInfo instanceof ClientePJ){
@@ -124,7 +124,7 @@ public class Seguradora {
         return false;
     }
 
-    public List<Sinistro> listarSinistros(){
+    public ArrayList<Sinistro> listarSinistros(){
 
         for(Sinistro sinistroCadastrado: listaSinistro){
             System.out.println(sinistroCadastrado);

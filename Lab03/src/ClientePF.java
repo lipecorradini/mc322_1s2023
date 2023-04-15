@@ -1,18 +1,19 @@
 import java.util.*;
+import java.time.LocalDate;
 
 public class ClientePF extends Cliente {
 
-	private Date dataLicenca;
+	private LocalDate dataLicenca;
 	private String educacao;
 	private String genero;
 	private String classeEconomica;
     private String cpf;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 	
 
-    public ClientePF( String nome , String endereco , Date dataLicenca ,
+    public ClientePF( String nome , String endereco , LocalDate dataLicenca ,
      String educacao , String genero , String classeEconomica ,
-     List < Veiculo > listaVeiculos , String cpf , Date dataNascimento){      
+     List < Veiculo > listaVeiculos , String cpf , LocalDate dataNascimento){      
 
         super ( nome , endereco , listaVeiculos );
 		this.dataLicenca = dataLicenca;
@@ -31,19 +32,19 @@ public class ClientePF extends Cliente {
         this.cpf = cpf;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
     
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-	public Date getDataLicenca(){
+	public LocalDate getDataLicenca(){
 		return dataLicenca;
 	}
 
-	public void setDataLicenca(Date dataLicenca){
+	public void setDataLicenca(LocalDate dataLicenca){
 		this.dataLicenca = dataLicenca;
 	}
 	
