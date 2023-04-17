@@ -47,7 +47,7 @@ public class Veiculo {
 	}
 	
 	public String toString(){
-		String tudo = "\nplaca: " + placa + "\nmarca: " + marca + "\nmodelo: " + modelo + "\nano fabricacao" + anoFabricacao;
+		String tudo = "\nplaca: " + placa + "\nmarca: " + marca + "\nmodelo: " + modelo + "\nano fabricacao: " + anoFabricacao;
 		return tudo;
 	}
 }

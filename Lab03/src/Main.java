@@ -38,11 +38,48 @@ public class Main {
 		Seguradora seguradora = new Seguradora("proteg seguradora", "(19)99999-9899"
 												, "proteg@gmail.com", "rua orosimbo maia, 191",
 												 listaSinistros, listaClientes);
+		seguradora.toString();
+
+		//Adicionando um veiculo para o cliente PF
+		Veiculo carroPf = new Veiculo("NNT-4I21", "Suzuki", "Gran Vitara", 2012);
+		System.out.println(carroPf.toString());
+
+		//Adicionando um veículo para o cliente PJ
+		Veiculo carroPj = new Veiculo("QLK-8C00", "Jeep", "Compass", 2018);
+		System.out.println(carroPj.toString());
+
 
 		//Cadastrando o primeiro cliente
 		validador = seguradora.cadastrarCliente(clientePf);
-		System.out.println("O cliente foi cadastrado: " + validador);
+		System.out.println("O cliente PF foi cadastrado: " + validador);
 		listaClientes = seguradora.listarClientes("ClientePF");
+
+		//Cadastrando o segundo cliente
+		validador = seguradora.cadastrarCliente(clientePJ);
+		System.out.println("O cliente PJ foi cadastrado: " + validador);
+		listaClientes = seguradora.listarClientes("ClientePJ");
+
+		//Gerando um sinistro
+		Sinistro sinistro = new Sinistro(LocalDate.now(), "rua zuppi, 27", seguradora, carroPj, clientePJ);
+		System.out.println(sinistro.toString());
+
+		//Chamando os métodos listarSinistros e visualizarSinistro da Seguradora
+		seguradora.gerarSinistro(carroPj, clientePJ); // falta completar
+		seguradora.gerarSinistro(carroPf, clientePf);
+		
+		seguradora.visualizarSinistro(clientePJ.toString());
+		seguradora.visualizarSinistro(clientePf.toString());
+
+		seguradora.listarSinistros();
+
+
+
+
+		
+		
+		
+
+
 
 	
 	}

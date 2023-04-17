@@ -1,16 +1,17 @@
 
 import java.util.Random;
+import java.time.LocalDate;
 
 public class Sinistro {
 
 		private int id;
-		private String data;
+		private LocalDate data;
 		private String endereco;
 		private Seguradora seguradora;
 		private Veiculo veiculo;
 		private Cliente cliente;
 		
-		public Sinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
+		public Sinistro(LocalDate data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
 	        this.id = generateId();
 	        this.data = data;
 	        this.endereco = endereco;
@@ -36,11 +37,11 @@ public class Sinistro {
 			this.id = id;
 		}
 		
-		public String getData() {
+		public LocalDate getData() {
 			return data;
 		}
 		
-		public void setData(String data) {
+		public void setData(LocalDate data) {
 			this.data = data;
 		}
 		
