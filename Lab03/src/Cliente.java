@@ -12,10 +12,10 @@ public class Cliente {
 	private ArrayList<Veiculo> listaVeiculos;
 
 	
-	public Cliente(String nome, String endereco, ArrayList<Veiculo> listaVeiculos){
+	public Cliente(String nome, String endereco){
         this.nome = nome;
         this.endereco = endereco;
-		this.listaVeiculos = listaVeiculos;
+		this.listaVeiculos = new ArrayList<Veiculo>();
 
     }
 	
@@ -41,7 +41,7 @@ public class Cliente {
 	
 	public boolean cadastrarVeiculos(Veiculo veiculo){
 	    listaVeiculos.add(veiculo);
-		//System.out.println("o numero de veiculos é: " + listaVeiculos.size());
+		System.out.println("o numero de veiculos é: " + listaVeiculos.size());
 		return true;
 	}
 

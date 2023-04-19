@@ -11,13 +11,13 @@ public class Seguradora {
 
     //Construtor
 
-    public Seguradora(String nome, String telefone, String email, String endereco, ArrayList <Sinistro> listaSinistro, ArrayList <Cliente> listaClientes){
+    public Seguradora(String nome, String telefone, String email, String endereco){
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
         this.endereco = endereco;
-        this.listaSinistro = listaSinistro;
-        this.listaClientes = listaClientes;
+        this.listaClientes = new ArrayList<Cliente>();
+        this.listaSinistro = new ArrayList<Sinistro>();
         
     }
     
@@ -102,7 +102,7 @@ public class Seguradora {
 
     public boolean gerarSinistro(Veiculo veiculo, Cliente cliente){
 
-        Seguradora seguradora = new Seguradora(nome, telefone, email,  endereco, listaSinistro, listaClientes);
+        Seguradora seguradora = new Seguradora(nome, telefone, email,  endereco);
         LocalDate dataAgora = LocalDate.now();
         
         Sinistro sinistro = new Sinistro(dataAgora, endereco, seguradora, veiculo, cliente);
