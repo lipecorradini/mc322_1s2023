@@ -7,7 +7,7 @@ public class ClientePJ extends Cliente{
     private LocalDate dataFundacao;
 
     public ClientePJ(String nome , String endereco , LocalDate dataLicenca ,
-     List < Veiculo > listaVeiculos , String CNPJ , LocalDate dataFundacao){
+     ArrayList < Veiculo > listaVeiculos , String CNPJ , LocalDate dataFundacao){
 
         super ( nome , endereco , listaVeiculos );
         this.CNPJ = CNPJ;

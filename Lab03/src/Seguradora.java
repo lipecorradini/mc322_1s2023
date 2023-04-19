@@ -104,9 +104,8 @@ public class Seguradora {
 
         Seguradora seguradora = new Seguradora(nome, telefone, email,  endereco, listaSinistro, listaClientes);
         LocalDate dataAgora = LocalDate.now();
-        String dataAgoraString = dataAgora.toString();
         
-        Sinistro sinistro = new Sinistro(dataAgoraString, endereco, seguradora, veiculo, cliente);
+        Sinistro sinistro = new Sinistro(dataAgora, endereco, seguradora, veiculo, cliente);
         listaSinistro.add(sinistro);
 
         return true;
@@ -115,8 +114,8 @@ public class Seguradora {
     public boolean visualizarSinistro(String cliente){ // usar o tostring
 
         for(Sinistro sinistroCadastrado : listaSinistro){
-            if(sinistroCadastrado.toString() == cliente){
-                System.out.println(sinistroCadastrado);
+            if(sinistroCadastrado.getCliente().getNome() == cliente){
+                System.out.println("O sinistro do cliente é: " + sinistroCadastrado + "\n");
                 return true;
             }
         }

@@ -13,7 +13,7 @@ public class ClientePF extends Cliente {
 
     public ClientePF( String nome , String endereco , LocalDate dataLicenca ,
      String educacao , String genero , String classeEconomica ,
-     List < Veiculo > listaVeiculos , String cpf , LocalDate dataNascimento){      
+     ArrayList < Veiculo > listaVeiculos , String cpf , LocalDate dataNascimento){      
 
         super ( nome , endereco , listaVeiculos );
 		this.dataLicenca = dataLicenca;
@@ -76,7 +76,8 @@ public class ClientePF extends Cliente {
     @Override
 
     public String toString(){
-        String tudo = "\n cpf: " + cpf + "\n data nascimento: " + dataNascimento;
+        String tudo = "\n cpf: " + cpf +  "\n Educacao: " + educacao + "\n genero: " + genero + "\n classe economica: " + classeEconomica +
+		 "\n data nascimento: " + dataNascimento + "\n data licenca: " + dataLicenca;
         return tudo;
     }
 
