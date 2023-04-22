@@ -69,19 +69,34 @@ public class Seguradora {
         return false;    
     }
 
-    public boolean removerCliente(String cliente){ // usar o to string
+    public boolean removerCliente(String cliente){
+
+        /*Remove o cliente da lista dos clientes, 
+        e também remove seu respectivo sinistro */
+        
+        
+        for(Sinistro sinistroCadastrado : listaSinistro){
+            if(sinistroCadastrado.getCliente().getNome() == cliente){
+                listaSinistro.remove(sinistroCadastrado);
+            }
+        }
 
         for(Cliente clienteInfo : listaClientes){
-            if(clienteInfo.toString() == cliente){
+            if(clienteInfo.getNome() == cliente){
                 listaClientes.remove(clienteInfo);
                 return true;
             }
         }
+        
         return false;
 
     }
 
     public ArrayList<Cliente> listarClientes(String tipoCliente){
+        /*
+         * Retorna a lista de todos os clientes a depender do tipo
+         * que foi passado por parâmetro
+         */
 
         ArrayList<Cliente> listaAuxiliar = new ArrayList<Cliente>();
 

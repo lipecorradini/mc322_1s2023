@@ -105,13 +105,13 @@ public class Main {
 	
 		if(tipoClienteStr.equals("PF")){
 			if(servicoStr.equals("1")) clientePf.listarVeiculos();
-			else if(servicoStr.equals("2")) clientePf.listarVeiculos();
+			else if(servicoStr.equals("2")) seguradora.visualizarSinistro(clientePf.getNome());
 		}
 
 		if(tipoClienteStr.equals("PJ")){
 
 			if(servicoStr.equals("1")) clientePJ.listarVeiculos();
-			else if(servicoStr.equals("2")) clientePJ.listarVeiculos();
+			else if(servicoStr.equals("2")) seguradora.visualizarSinistro(clientePJ.getNome());
 		}
 
 	}
