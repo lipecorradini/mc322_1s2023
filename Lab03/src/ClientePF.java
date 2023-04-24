@@ -81,6 +81,9 @@ public class ClientePF extends Cliente {
     }
 
     public boolean validarCPF(String cpf) {
+		/*
+		 * Recebe um cpf e verifica se é válido
+		 */
 		
 		// Removendo caracteres nao numericos
 

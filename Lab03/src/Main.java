@@ -15,10 +15,9 @@ public class Main {
 		//Validando o cpf do cliente PF
 		System.out.println("----------- Validando o CPF -----------");
 		boolean validador;
-		validador = clientePf.validarCPF("120.102.984-89");
+		validador = clientePf.validarCPF("494.996.278-71");
 		System.out.println("O cpf é válido: " + validador);
 		
-
 
 		//Criando o cliente PJ
 		ClientePJ clientePJ = new ClientePJ("apple", "silicon valley"

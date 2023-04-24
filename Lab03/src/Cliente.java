@@ -5,10 +5,6 @@ public class Cliente {
 	
 	private String nome;
 	private String endereco;
-	private Date dataLicenca;
-	private String educacao;
-	private String genero;
-	private String classeEconomica; 
 	private ArrayList<Veiculo> listaVeiculos;
 
 	
@@ -40,12 +36,18 @@ public class Cliente {
 	}
 	
 	public boolean cadastrarVeiculos(Veiculo veiculo){
+		/*
+		 * Adiciona um veículo na lista de veículos, e mostra o tamanho da lista
+		 */
 	    listaVeiculos.add(veiculo);
 		System.out.println("o numero de veiculos é: " + listaVeiculos.size());
 		return true;
 	}
 
 	public boolean removerVeiculos(Veiculo veiculo){
+		/*
+		 * Procura um veículo e o remove da lista
+		 */
 	    for(Veiculo carro : listaVeiculos){
 			if(carro == veiculo){
 				listaVeiculos.remove(veiculo);
@@ -56,10 +58,12 @@ public class Cliente {
 	}
 
 	public void listarVeiculos(){
+		/*
+		 * Mostra todos os veículos cadastrados
+		 */
 		int numeroVeiculos = 0;
 		for(Veiculo carro: listaVeiculos){
 			System.out.println(carro.toString());
-			System.out.println("-------------------------");
 			numeroVeiculos ++;
 		}
 		if(numeroVeiculos == 0) System.out.println("Não existem Veículos cadastrados!");

@@ -60,6 +60,10 @@ public class Seguradora {
     }
     
     public boolean cadastrarCliente(Cliente cliente){
+        /*
+         * Se o cliente não estiver cadastrado, o adiciona na lista dos clientes, 
+         * se tiver, não adiciona e retorna falso
+         */
         
         if (listaClientes.indexOf(cliente) == -1){
             listaClientes.add(cliente);
@@ -116,6 +120,10 @@ public class Seguradora {
     }
 
     public boolean gerarSinistro(Veiculo veiculo, Cliente cliente){
+        /*
+         * Gera um sinistro para o cliente, recebendo o veículo e o cliente,
+         *  e o adiciona na lista dos sinistros
+         */
 
         Seguradora seguradora = new Seguradora(nome, telefone, email,  endereco);
         LocalDate dataAgora = LocalDate.now();
@@ -126,7 +134,11 @@ public class Seguradora {
         return true;
     }
 
-    public boolean visualizarSinistro(String cliente){ // usar o tostring
+    public boolean visualizarSinistro(String cliente){
+        /*
+         * Percorre os sinistros comparando os nomes dos clientes
+         *  até achar o sinistro do respectivo cliente, depois mostra o sinistro na tela
+         */
 
         for(Sinistro sinistroCadastrado : listaSinistro){
             if(sinistroCadastrado.getCliente().getNome() == cliente){
@@ -139,6 +151,9 @@ public class Seguradora {
     }
 
     public ArrayList<Sinistro> listarSinistros(){
+        /*
+         * Mostra todos os sinistros cadastrados
+         */
 
         for(Sinistro sinistroCadastrado: listaSinistro){
             System.out.println(sinistroCadastrado);
