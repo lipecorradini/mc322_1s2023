@@ -162,24 +162,19 @@ public class Seguradora {
         return listaSinistro;
     }
 
-    public ArrayList<Double> calcularPrecoSeguroCliente(){
+    public double calcularPrecoSeguroCliente(Cliente cliente){
 
-        ArrayList<Double> precoSeguroClientes = new ArrayList<Double>();
         double preco;
-        for(Cliente cliente : listaClientes){
-            preco = cliente.calculaScore() * (1 + listaSinistro.size()); // ver se o calcula score pega da classe filha ou retorna o -1
-            precoSeguroClientes.add(preco);
-        }
-
-        return precoSeguroClientes;
+        preco = cliente.calculaScore() * (1 + listaSinistro.size());
+        //System.out.println("O preço do seguro do " + cliente.getNome() + " é: " + preco);
+        return preco;
     }
 
     public void calcularReceita(){
         
-        ArrayList<Double> precoSeguroClientes = calcularPrecoSeguroCliente();
         double receita = 0;
-        for(Double precoSeguro : precoSeguroClientes){
-            receita += precoSeguro;
+        for(Cliente cliente: listaClientes){
+            receita += calcularPrecoSeguroCliente(cliente);
         }
 
         System.out.println("A receita total é: " + receita);

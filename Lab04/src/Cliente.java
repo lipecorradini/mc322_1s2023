@@ -6,14 +6,27 @@ public class Cliente {
 	private String nome;
 	private String endereco;
 	private ArrayList<Veiculo> listaVeiculos;
+	private double valorSeguro;
 
 	
-	public Cliente(String nome, String endereco){
+	public Cliente(String nome, String endereco, double valorSeguro){
         this.nome = nome;
         this.endereco = endereco;
 		this.listaVeiculos = new ArrayList<Veiculo>();
+		this.valorSeguro = valorSeguro;
 
     }
+	public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
+		this.listaVeiculos = listaVeiculos;
+	}
+
+	public double getValorSeguro() {
+		return this.valorSeguro;
+	}
+
+	public void setValorSeguro(double valorSeguro) {
+		this.valorSeguro = valorSeguro;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -78,4 +91,6 @@ public class Cliente {
 		// nao deve ser usado
 		return -1.0;
 	
+	}
+
 }

@@ -22,7 +22,7 @@ public class Main {
 		//Criando o cliente PJ
 		ClientePJ clientePJ = new ClientePJ("apple", "silicon valley"
 							, LocalDate.now(), "32.001.336/0001-65",
-							 LocalDate.of(1952, 3, 23));
+							 LocalDate.of(1952, 3, 23), 5, 0);
 
 
 		//Validando CNPJ do cliente PJ
