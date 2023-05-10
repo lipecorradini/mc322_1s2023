@@ -5,18 +5,28 @@ public enum MenuOperacoes {
     SAIR(0),
     GERAR_SINISTRO(4),
     TRANSFERIR_SEGURO(5),
-    CALCULAR_RECEITA_SEGURADORA(6);
+    CALCULAR_RECEITA_SEGURADORA(6),
+    ERRO(-1);
 
 
-    public final int operacao;
+    public final double operacao;
 
-    MenuOperacoes(int operacao){
+    MenuOperacoes(double operacao){
         this.operacao = operacao;
 
     }
 
-    public int getOperacao() {
+    public double getOperacao() {
         return this.operacao;
+    }
+
+    public MenuOperacoes retornarComando(double comando){
+        for(MenuOperacoes comandos : values()){
+            if(comandos.getOperacao() == comando){
+                return comandos;
+            }
+        }
+        return ERRO;
     }
     
 }

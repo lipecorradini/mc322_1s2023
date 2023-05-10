@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-public class Cliente {
+public abstract class Cliente {
 	
 	private String nome;
 	private String endereco;
@@ -87,10 +87,6 @@ public class Cliente {
 		return tudo;
 	}
 
-	public double calculaScore(){
-		// nao deve ser usado
-		return -1.0;
-	
-	}
+	public abstract double calculaScore();
 
 }

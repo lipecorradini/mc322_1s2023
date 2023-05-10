@@ -58,6 +58,10 @@ public class Seguradora {
         this.endereco = endereco;
         
     }
+
+    public ArrayList<Cliente> getListaClientes(){
+        return listaClientes;
+    }
     
     public boolean cadastrarCliente(Cliente cliente){
         /*
@@ -107,16 +111,35 @@ public class Seguradora {
         for(Cliente clienteInfo : listaClientes){
             if(tipoCliente == "ClientePJ" && clienteInfo instanceof ClientePJ){
                 listaAuxiliar.add(clienteInfo);
+                System.out.println(clienteInfo);
     
             }
 
             if(tipoCliente == "ClientePF" && clienteInfo instanceof ClientePF){
                 listaAuxiliar.add(clienteInfo);
+                System.out.println(clienteInfo);
     
             }
+        
         }
 
             return listaAuxiliar;
+    }
+
+    
+    public ArrayList<Integer> listarClientesPJ(){
+
+        ArrayList<Integer> indicesPJ = new ArrayList<Integer>();
+        int contador = 0;
+        for(Cliente cliente: listaClientes){
+            if(cliente instanceof ClientePJ){
+                indicesPJ.add(contador);
+            }
+            contador = contador + 1;
+
+        }
+        return indicesPJ;
+
     }
 
     public boolean gerarSinistro(Veiculo veiculo, Cliente cliente){
@@ -162,9 +185,16 @@ public class Seguradora {
         return listaSinistro;
     }
 
+    public void listarVeiculos(){
+        for(Cliente cliente: listaClientes){
+            cliente.listarVeiculos();
+        }
+    }
+
     public double calcularPrecoSeguroCliente(Cliente cliente){
 
         double preco;
+
         preco = cliente.calculaScore() * (1 + listaSinistro.size());
         //System.out.println("O preço do seguro do " + cliente.getNome() + " é: " + preco);
         return preco;

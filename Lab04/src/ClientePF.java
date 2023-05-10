@@ -10,6 +10,7 @@ public class ClientePF extends Cliente {
 	private String classeEconomica;
     private String cpf;
     private LocalDate dataNascimento;
+	private double valorSeguro;
 	
 
     public ClientePF( String nome , String endereco , LocalDate dataLicenca ,
@@ -22,6 +23,7 @@ public class ClientePF extends Cliente {
 		this.classeEconomica = classeEconomica;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
+		this.valorSeguro = 0;
     }
 
     public String getCpf() {
@@ -66,6 +68,14 @@ public class ClientePF extends Cliente {
 
 	public String getClasseEconomica() {
 		return classeEconomica;
+	}
+
+	public double getValorSeguro() {
+		return this.valorSeguro;
+	}
+
+	public void setValorSeguro(double valorSeguro) {
+		this.valorSeguro = valorSeguro;
 	}
 	
 	public void setClasseEconomica(String classeEconomica){

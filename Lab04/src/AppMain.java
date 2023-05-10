@@ -21,6 +21,22 @@ public class AppMain {
                 int novaOperacao = comando.nextInt();
                 novoComando.close();
 
+                //fazer as instrucoes para cada um dos 
+                switch(novaOperacao){
+
+                    case 1:
+                        //cadastrar cliente pf/pj
+                    
+                    case 2:
+                        //cadastrar veiculo
+                    
+                    case 3:
+                        //cadastrar seguradora
+                    
+                    case 4:
+                        
+                }                
+
             case 2:
                 System.out.println("1) Listar Cliente PF/PJ por Seguradora\n 2) Listar Sinistros por Seguradora\n");
                 System.out.println("3) Listar Sinistro por Cliente\n 4) Listar Veículo por Cliente\n 5) Listar Veículo por Seguradora\n 6) Voltar");
