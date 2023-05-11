@@ -115,6 +115,9 @@ public class Validacao {
 	}
 
     public static boolean validarNome(String nome){
+        /*
+         * Valida o nome, verifica se so sao caracteres
+         */
         for(int i = 0; i < nome.length(); i++){
             char letra = nome.charAt(i);
             if(!Character.isAlphabetic(letra)){

@@ -42,12 +42,15 @@ public class ClientePJ extends Cliente{
     @Override
 
     public String toString(){
-        String tudo = "\n CNPJ: " + CNPJ + "\n data fundacao: " + dataFundacao;
+        String tudo = "nome: " + getNome() + "\n CNPJ: " + CNPJ + "\n data fundacao: " + dataFundacao;
         return tudo;
     }
 
     
         public double calculaScore(){
+            /*
+		    * Calcula o score do cliente
+		    */
 
             ArrayList<Veiculo> listaVeiculos = getListaVeiculos();
             return (1 + (qtdeFuncionarios)/100) * listaVeiculos.size();

@@ -6,6 +6,10 @@ import java.util.*;
 public class AppMain {
 
     public static void MenuEstatico(ArrayList<Cliente> listaClientes, ArrayList<Seguradora> listaSeguradora,
+    /*
+     * Método para mostrar as instanciações estáticas do menu
+     * 
+     */
             Seguradora seguradora) {
 
         // Criando o cliente PF
@@ -72,8 +76,12 @@ public class AppMain {
 
     }
 
-    public static void ExecutarOperacao(ArrayList<Cliente> listaClientes, ArrayList<Seguradora> listaSeguradora,
+    public static void ExecutarOperacao(ArrayList<Seguradora> listaSeguradora,
             Seguradora seguradora, boolean validacaoContinuar) {
+        /*
+         * Executa as operações do menu dinâmico
+         * 
+         */
 
         Scanner sc = new Scanner(System.in);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd. MM. yyyy");
@@ -98,154 +106,165 @@ public class AppMain {
 
                 double operacaoCadastrar = 0;
 
-                    System.out.println(
-                            "1) Cadastrar Cliente PF/PJ\n2) Cadastrar Veículos\n3) Cadastrar Seguradora\n4) Voltar");
-                    System.out.println("---------------------------------------------------");
-                    operacaoCadastrar = sc.nextDouble();
-                    sc.nextLine();
+                System.out.println(
+                        "1) Cadastrar Cliente PF/PJ\n2) Cadastrar Veículos\n3) Cadastrar Seguradora\n4) Voltar");
+                System.out.println("---------------------------------------------------");
+                operacaoCadastrar = sc.nextDouble();
+                sc.nextLine();
 
-                    double cadastrarMenuFracionado = operacao + operacaoCadastrar / 10;
-                    MenuOperacoes cadastrarMenu = MenuOperacoes.retornarComando(cadastrarMenuFracionado);
+                double cadastrarMenuFracionado = operacao + operacaoCadastrar / 10;
+                MenuOperacoes cadastrarMenu = MenuOperacoes.retornarComando(cadastrarMenuFracionado);
 
-                    // fazer as instrucoes para cada um dos
-                    switch (cadastrarMenu) {
+                // fazer as instrucoes para cada um dos
+                switch (cadastrarMenu) {
 
-                        case CADASTRAR_CLIENTE:
-                            // cadastrar cliente pf/pj
-                            System.out.println("1) Cliente Pessoa Física\n2) Cliente Pessoa Jurídica ");
-                            int tipoCliente = sc.nextInt();
-                            sc.nextLine();
+                    case CADASTRAR_CLIENTE:
+                        // cadastrar cliente pf/pj
+                        System.out.println("1) Cliente Pessoa Física\n2) Cliente Pessoa Jurídica ");
+                        int tipoCliente = sc.nextInt();
+                        sc.nextLine();
 
-                            System.out.println("- Nome do Cliente/Empresa: ");
-                            String nome = sc.nextLine();
-                            boolean ehValido = Validacao.validarNome(nome);
-                            if (!ehValido) {
-                                System.out.println("O nome não é válido! ");
-                                sc.close();
-                                break;
-                            }
-
-                            System.out.println("- Endereço do Cliente/Empresa: ");
-                            String endereco = sc.nextLine();
-
-                            System.out.println("- Data da licença [dd. MM. yyyy]: ");
-                            String str = sc.nextLine();
-                            LocalDate datadaLicenca = LocalDate.parse(str, dtf);
-
-                            switch (tipoCliente) {
-
-                                case 1:
-                                    System.out.println("Digite o grau de Educação: ");
-                                    String educacao = sc.nextLine();
-                            
-                                    System.out.println("Digite o Gênero: ");
-                                    String genero = sc.nextLine();
-                            
-                                    System.out.println("Digite a Classe econômica: ");
-                                    String classeEconomica = sc.nextLine();
-                            
-                                    System.out.println("Digite o CPF: ");
-                                    String cpf = sc.nextLine();
-                                    boolean ehValidoPf = Validacao.validarCPF(cpf);
-                                    if (!ehValidoPf) {
-                                        System.out.println("O CNPJ não é válido! ");
-                                        System.out.println(" CPF não é válido! ");
-                            
-                                    }
-                            
-                                    System.out.println("Data de Nascimento [dd. MM. yyyy]: ");
-                                    String dataNascimento = sc.nextLine();
-                                    LocalDate dataNascimentoDate = LocalDate.parse(dataNascimento, dtf);
-                            
-                                    ClientePF clientePf = new ClientePF(nome, endereco, datadaLicenca, educacao, genero,
-                                            classeEconomica, cpf, dataNascimentoDate, 0);
-                                    double valorSeguroPf = seguradora.calcularPrecoSeguroCliente(clientePf);
-                                    clientePf.setValorSeguro(valorSeguroPf);
-                            
-                                    seguradora.cadastrarCliente(clientePf);
-                                    System.out.println("Seja bem vindo, " + nome + "! aqui estão suas informações:\n" + clientePf);
-                                    break;
-                                    
-                                case 2:
-                                    System.out.println("CNPJ: ");
-                                    String cnpj = sc.nextLine();
-                            
-                                    boolean ehValidoPj = Validacao.validarCNPJ(cnpj);
-                                    if (!ehValidoPj) {
-                                        System.out.println("O CNPJ não é válido! ");
-                                        sc.close();
-                                        return;
-                                    }
-                            
-                                    System.out.println("Data de Fundação [dd. MMM. yyyy]: ");
-                                    String dataFundacao = sc.nextLine();
-                                    LocalDate dataFundacaoDate = LocalDate.parse(dataFundacao, dtf);
-                            
-                                    System.out.println(" Quantidade de Funcionários: ");
-                                    int qtdeFuncionarios = sc.nextInt();
-                                    sc.nextLine();
-                            
-                                    ClientePJ clientePj = new ClientePJ(nome, endereco, datadaLicenca, cnpj,
-                                            dataFundacaoDate, qtdeFuncionarios, 0);
-                                    double valorSeguroPj = seguradora.calcularPrecoSeguroCliente(clientePj);
-                                    clientePj.setValorSeguro(valorSeguroPj);
-                            
-                                    seguradora.cadastrarCliente(clientePj);
-                                    System.out.println("A empresa " + nome + " de CNPJ " + cnpj + "foi cadastrada com sucesso na Seguradora!:\n");
-                                    break;
-
-                            }
+                        System.out.println("- Nome do Cliente/Empresa: ");
+                        String nome = sc.nextLine();
+                        boolean ehValido = Validacao.validarNome(nome);
+                        if (!ehValido) {
+                            System.out.println("O nome não é válido! ");
+                            sc.close();
                             break;
-
-                        case CADASTRAR_VEICULO:
-                            // cadastrar veiculo
-                            System.out.println("Placa: ");
-                            String placa = sc.nextLine();
-
-                            System.out.println("Marca: ");
-                            String marca = sc.nextLine();
-
-                            System.out.println("Modelo: ");
-                            String modelo = sc.nextLine();
-
-                            System.out.println("Ano de Fabricação: ");
-                            int anoFabricacao = sc.nextInt();
-                            sc.nextLine();
-
-                            Veiculo veiculoCadastrado = new Veiculo(placa, marca, modelo, anoFabricacao);
-                            System.out.println("Veículo de placa " + veiculoCadastrado.getPlaca() + " cadastrado!");
-                            break;
-
-                        case CADASTRAR_SEGURADORA:
-
-                            // cadastrar seguradora
-
-                            System.out.println("Nome: ");
-                            String nomeSeguradora = sc.nextLine();
-
-                            System.out.println("Telefone: ");
-                            String telefoneSeguradora = sc.nextLine();
-
-                            System.out.println("Email: ");
-                            String emailSeguradora = sc.nextLine();
-
-                            System.out.println("Endereco: ");
-                            String enderecoSeguradora = sc.nextLine();
-
-                            Seguradora seguradoraNova = new Seguradora(nomeSeguradora, telefoneSeguradora,
-                                    emailSeguradora,
-                                    enderecoSeguradora);
-                            listaSeguradora.add(seguradoraNova);
-                            System.out.println(
-                                    "Seguradora de nome " + nomeSeguradora + " cadastrada em nosso sistema!");
-                            break;
-                    
-                        case SAIR_CADASTRAR:
-                            ExecutarOperacao(listaClientes, listaSeguradora, seguradora, validacaoContinuar);
                         }
 
-                    break;
+                        System.out.println("- Endereço do Cliente/Empresa: ");
+                        String endereco = sc.nextLine();
 
+                        System.out.println("- Data da licença [dd. MM. yyyy]: ");
+                        String str = sc.nextLine();
+                        LocalDate datadaLicenca = LocalDate.parse(str, dtf);
+
+                        switch (tipoCliente) {
+
+                            case 1:
+                                System.out.println("Digite o grau de Educação: ");
+                                String educacao = sc.nextLine();
+
+                                System.out.println("Digite o Gênero: ");
+                                String genero = sc.nextLine();
+
+                                System.out.println("Digite a Classe econômica: ");
+                                String classeEconomica = sc.nextLine();
+
+                                System.out.println("Digite o CPF: ");
+                                String cpf = sc.nextLine();
+                                boolean ehValidoPf = Validacao.validarCPF(cpf);
+                                if (!ehValidoPf) {
+                                    System.out.println("O CNPJ não é válido! ");
+                                    System.out.println(" CPF não é válido! ");
+
+                                }
+
+                                System.out.println("Data de Nascimento [dd. MM. yyyy]: ");
+                                String dataNascimento = sc.nextLine();
+                                LocalDate dataNascimentoDate = LocalDate.parse(dataNascimento, dtf);
+
+                                ClientePF clientePf = new ClientePF(nome, endereco, datadaLicenca, educacao, genero,
+                                        classeEconomica, cpf, dataNascimentoDate, 0);
+                                double valorSeguroPf = seguradora.calcularPrecoSeguroCliente(clientePf);
+                                clientePf.setValorSeguro(valorSeguroPf);
+
+                                seguradora.cadastrarCliente(clientePf);
+                                System.out.println(
+                                        "Seja bem vindo, " + nome + "! aqui estão suas informações:\n" + clientePf);
+                                break;
+
+                            case 2:
+                                System.out.println("CNPJ: ");
+                                String cnpj = sc.nextLine();
+
+                                boolean ehValidoPj = Validacao.validarCNPJ(cnpj);
+                                if (!ehValidoPj) {
+                                    System.out.println("O CNPJ não é válido! ");
+                                    sc.close();
+                                    return;
+                                }
+
+                                System.out.println("Data de Fundação [dd. MMM. yyyy]: ");
+                                String dataFundacao = sc.nextLine();
+                                LocalDate dataFundacaoDate = LocalDate.parse(dataFundacao, dtf);
+
+                                System.out.println(" Quantidade de Funcionários: ");
+                                int qtdeFuncionarios = sc.nextInt();
+                                sc.nextLine();
+
+                                ClientePJ clientePj = new ClientePJ(nome, endereco, datadaLicenca, cnpj,
+                                        dataFundacaoDate, qtdeFuncionarios, 0);
+                                double valorSeguroPj = seguradora.calcularPrecoSeguroCliente(clientePj);
+                                clientePj.setValorSeguro(valorSeguroPj);
+
+                                seguradora.cadastrarCliente(clientePj);
+                                System.out.println("A empresa " + nome + " de CNPJ " + cnpj
+                                        + "foi cadastrada com sucesso na Seguradora!:\n");
+                                break;
+
+                        }
+                        break;
+
+                    case CADASTRAR_VEICULO:
+                        // cadastrar veiculo
+                        System.out.println("Placa: ");
+                        String placa = sc.nextLine();
+
+                        System.out.println("Marca: ");
+                        String marca = sc.nextLine();
+
+                        System.out.println("Modelo: ");
+                        String modelo = sc.nextLine();
+
+                        System.out.println("Ano de Fabricação: ");
+                        int anoFabricacao = sc.nextInt();
+                        sc.nextLine();
+
+                        System.out.println("Nome do Cliente: ");
+                        String nomeCliente = sc.nextLine();
+
+                        Veiculo veiculoCadastrado = new Veiculo(placa, marca, modelo, anoFabricacao);
+
+                        for (Cliente clienteNovo : seguradora.getListaClientes()) {
+                            if (nomeCliente.equals(clienteNovo.getNome())) {
+                                clienteNovo.cadastrarVeiculos(veiculoCadastrado);
+                            }
+                        }
+                        System.out.println("Veículo de placa " + veiculoCadastrado.getPlaca() + " cadastrado!");
+
+                        break;
+
+                    case CADASTRAR_SEGURADORA:
+
+                        // cadastrar seguradora
+
+                        System.out.println("Nome: ");
+                        String nomeSeguradora = sc.nextLine();
+
+                        System.out.println("Telefone: ");
+                        String telefoneSeguradora = sc.nextLine();
+
+                        System.out.println("Email: ");
+                        String emailSeguradora = sc.nextLine();
+
+                        System.out.println("Endereco: ");
+                        String enderecoSeguradora = sc.nextLine();
+
+                        Seguradora seguradoraNova = new Seguradora(nomeSeguradora, telefoneSeguradora,
+                                emailSeguradora,
+                                enderecoSeguradora);
+                        listaSeguradora.add(seguradoraNova);
+                        System.out.println(
+                                "Seguradora de nome " + nomeSeguradora + " cadastrada em nosso sistema!");
+                        break;
+
+                    case SAIR_CADASTRAR:
+                        ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
+                }
+
+                break;
 
             case LISTAR:
                 System.out.println("---------- LISTAGEM -----------");
@@ -295,14 +314,14 @@ public class AppMain {
 
                     case LISTAR_SINISTRO_POR_CLIENTE:
                         // Listar Sinistros por Cliente
-                        for (Cliente clienteIterado : listaClientes) {
+                        for (Cliente clienteIterado : seguradora.getListaClientes()) {
                             seguradora.visualizarSinistro(clienteIterado.getNome());
                         }
                         break;
 
                     case LISTAR_VEICULO_POR_CLIENTE:
                         // Listar Veículo por Cliente
-                        for (Cliente clienteIterado : listaClientes) {
+                        for (Cliente clienteIterado : seguradora.getListaClientes()) {
                             clienteIterado.listarVeiculos();
                         }
                         break;
@@ -314,7 +333,8 @@ public class AppMain {
                         }
                         break;
                     case SAIR_LISTAR:
-                        ExecutarOperacao(listaClientes, listaSeguradora, seguradora, validacaoContinuar);
+                        ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
+                        break;
                 }
                 break;
 
@@ -337,8 +357,8 @@ public class AppMain {
 
                         int contador = 0;
                         boolean clienteRemovido = false;
-                        for (Cliente cliente : listaClientes) {
-                            if (cliente.getNome() == nomeExcluido) {
+                        for (Cliente cliente : seguradora.getListaClientes()) {
+                            if (cliente.getNome().equals(nomeExcluido)) {
                                 clienteRemovido = true;
                                 seguradora.removerCliente(nomeExcluido);
                                 System.out.println("Cliente com nome " + nomeExcluido + " excluído!");
@@ -349,6 +369,7 @@ public class AppMain {
                             System.out.println("Nenhum cliente encontrado!");
                         }
                         break;
+                
 
                     case EXCLUIR_VEICULO:
 
@@ -359,7 +380,7 @@ public class AppMain {
                         for (Cliente clienteVeiculos : seguradora.getListaClientes()) {
                             ArrayList<Veiculo> listaVeiculos = clienteVeiculos.getListaVeiculos();
                             for (Veiculo veiculo : listaVeiculos) {
-                                if (veiculo.getPlaca() == placaExcluida) {
+                                if (veiculo.getPlaca().equals(placaExcluida)) {
                                     System.out.println("Veículo com placa" + placaExcluida + " excluído!");
                                     veiculoRemovido = true;
                                     clienteVeiculos.removerVeiculos(veiculo);
@@ -402,9 +423,13 @@ public class AppMain {
                             }
                         }
                         break;
+                    
                     case SAIR_EXCLUIR:
-                        ExecutarOperacao(listaClientes, listaSeguradora, seguradora, validacaoContinuar);
+                        ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
+                        break;
+                    
                 }
+                break;
 
             case GERAR_SINISTRO:
                 System.out.println("---------- GERAR SINISTRO -----------");
@@ -420,15 +445,14 @@ public class AppMain {
 
                 boolean clienteExiste = false;
                 boolean veiculoExiste = false;
-
                 for (Cliente cliente : seguradora.getListaClientes()) {
-                    if (cliente.getNome() == nome) {
+                    if (cliente.getNome().equals(nome)) {
                         clienteExiste = true;
                         for (Veiculo veiculo : cliente.getListaVeiculos()) {
-                            if (veiculo.getPlaca() == placa) {
+                            if (veiculo.getPlaca().equals(placa)) {
                                 veiculoExiste = true;
                                 seguradora.gerarSinistro(veiculo, cliente, enderecoSinistro);
-                                System.out.println("Sinistro do cliente " + nome + "gerado com sucesso! ");
+                                System.out.println("Sinistro do cliente " + nome + " gerado com sucesso! ");
 
                             }
                         }
@@ -441,7 +465,8 @@ public class AppMain {
                     System.out.println("Desculpe, não encontramos o veículo.");
                 }
 
-                ExecutarOperacao(listaClientes, listaSeguradora, seguradora ,validacaoContinuar);
+                ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
+                break;
 
             case TRANSFERIR_SEGURO:
 
@@ -455,10 +480,10 @@ public class AppMain {
 
                 boolean achouCliente = false;
                 for (Cliente clienteRemetente : seguradora.getListaClientes()) {
-                    if (clienteRemetente.getNome() == nomeClienteRemetente) {
+                    if (clienteRemetente.getNome().equals(nomeClienteRemetente)) {
                         achouCliente = true;
                         for (Cliente clienteDestinatario : seguradora.getListaClientes()) {
-                            if (clienteDestinatario.getNome() == nomeClienteDestinatario) {
+                            if (clienteDestinatario.getNome().equals(nomeClienteDestinatario)) {
                                 for (Veiculo veiculo : clienteRemetente.getListaVeiculos()) {
                                     clienteDestinatario.cadastrarVeiculos(veiculo);
                                     clienteRemetente.removerVeiculos(veiculo);
@@ -472,16 +497,18 @@ public class AppMain {
                         }
                     }
                 }
-                if(!achouCliente){
+                if (!achouCliente) {
                     System.out.println("Desculpe, não encontramos o cliente.");
                 }
-                ExecutarOperacao(listaClientes, listaSeguradora, seguradora, validacaoContinuar);
+                ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
+                break;
 
             case CALCULAR_RECEITA_SEGURADORA:
                 System.out.println("---------- CALCULANDO RECEITA SEGURADORA -----------");
 
                 seguradora.calcularReceita();
-                ExecutarOperacao(listaClientes, listaSeguradora, seguradora, validacaoContinuar);
+                ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
+                break;
 
             case SAIR:
                 validacaoContinuar = false;
@@ -492,12 +519,14 @@ public class AppMain {
 
     public static void MenuInterativo(ArrayList<Cliente> listaClientes, ArrayList<Seguradora> listaSeguradora,
             Seguradora seguradora) {
+                /*
+                 * Chama o menu interativo em loop até a validação ser falsa
+                 * 
+                 */
         boolean validacaoContinuar = true;
-        while(validacaoContinuar){
-            ExecutarOperacao(listaClientes, listaSeguradora, seguradora, validacaoContinuar);
-        } 
-        
-        
+        while (validacaoContinuar) {
+            ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
+        }
 
     }
 

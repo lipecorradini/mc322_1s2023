@@ -76,12 +76,15 @@ public class ClientePF extends Cliente {
     @Override
 
     public String toString(){
-        String tudo = "\n cpf: " + cpf +  "\n Educacao: " + educacao + "\n genero: " + genero + "\n classe economica: " + classeEconomica +
+        String tudo ="nome: " + getNome() + "\n cpf: " + cpf +  "\n Educacao: " + educacao + "\n genero: " + genero + "\n classe economica: " + classeEconomica +
 		 "\n data nascimento: " + dataNascimento + "\n data licenca: " + dataLicenca;
         return tudo;
     }
 
 	public double calculaScore(){
+		/*
+		 * Calcula o score do cliente
+		 */
 
 		ArrayList<Veiculo> listaVeiculos = getListaVeiculos();
 		

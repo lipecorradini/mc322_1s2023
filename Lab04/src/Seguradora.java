@@ -130,21 +130,6 @@ public class Seguradora {
             return listaAuxiliar;
     }
 
-    
-    public ArrayList<Integer> listarClientesPJ(){
-
-        ArrayList<Integer> indicesPJ = new ArrayList<Integer>();
-        int contador = 0;
-        for(Cliente cliente: listaClientes){
-            if(cliente instanceof ClientePJ){
-                indicesPJ.add(contador);
-            }
-            contador = contador + 1;
-
-        }
-        return indicesPJ;
-
-    }
 
     public boolean gerarSinistro(Veiculo veiculo, Cliente cliente, String enderecoSinistro){
         /*
@@ -178,6 +163,9 @@ public class Seguradora {
     }
 
     public boolean removerSinistro(int id){
+        /*
+         * Remove um sinistro a partir de seu id
+         */
         
         for(Sinistro sinistroCadastrado : listaSinistro){
             if(sinistroCadastrado.getId() == id){
@@ -209,15 +197,21 @@ public class Seguradora {
     }
 
     public double calcularPrecoSeguroCliente(Cliente cliente){
+        /*
+         * Calcula o preço do seguro de um cliente conforme a formula passada
+         */
 
         double preco;
 
         preco = cliente.calculaScore() * (1 + listaSinistro.size());
-        //System.out.println("O preço do seguro do " + cliente.getNome() + " é: " + preco);
         return preco;
     }
 
     public void calcularReceita(){
+        /*
+         * Calcula o valor da receita total da seguradora
+         * 
+         */
         
         double receita = 0;
         for(Cliente cliente: listaClientes){
