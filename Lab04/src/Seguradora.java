@@ -62,6 +62,10 @@ public class Seguradora {
     public ArrayList<Cliente> getListaClientes(){
         return listaClientes;
     }
+
+    public ArrayList<Sinistro> getListaSinistros(){
+        return listaSinistro;
+    }
     
     public boolean cadastrarCliente(Cliente cliente){
         /*
@@ -170,6 +174,19 @@ public class Seguradora {
             }
         }
 
+        return false;
+    }
+
+    public boolean removerSinistro(int id){
+        
+        for(Sinistro sinistroCadastrado : listaSinistro){
+            if(sinistroCadastrado.getId() == id){
+                listaSinistro.remove(sinistroCadastrado);
+                System.out.println("Sinistro de id " + id + " removido com sucesso!");
+                return true;
+                
+            }
+        }
         return false;
     }
 

@@ -78,7 +78,10 @@ public class Sinistro {
 	    }
 
 		public String toString(){
-			String tudo = "\n data: " + data + "\n endereco: " + endereco + "\n seguradora: " + seguradora + "\n veiculo: " + veiculo + "\ncliente:  " + cliente;
+			String tudo = "\n data: " + data + "\n endereco: " + endereco + 
+			"\n seguradora: " + seguradora + "\n veiculo: " + veiculo + "\ncliente:  " + cliente
+			+ "\n id: " + id + "\n";
+			
 			return tudo;
 		}
 		
