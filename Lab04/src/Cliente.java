@@ -53,7 +53,7 @@ public abstract class Cliente {
 		 * Adiciona um veículo na lista de veículos, e mostra o tamanho da lista
 		 */
 	    listaVeiculos.add(veiculo);
-		System.out.println("o numero de veiculos é: " + listaVeiculos.size());
+		//System.out.println("o numero de veiculos é: " + listaVeiculos.size());
 		return true;
 	}
 
