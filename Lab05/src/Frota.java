@@ -15,6 +15,10 @@ public class Frota {
         return this.code;
     }
 
+    public ArrayList<Veiculo> getListaVeiculos() {
+        return this.listaVeiculos;
+    }
+
     public String generateCode() {
         
         String code = "";

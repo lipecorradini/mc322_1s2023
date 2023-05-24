@@ -7,12 +7,17 @@ public class Sinistro {
 		private int id;
 		private LocalDate data;
 		private String endereco;
+		private Condutor condutor;
+		private Seguro seguro;
 		
 		
-		public Sinistro(LocalDate data, String endereco){
-	        this.id = generateId();
+		public Sinistro(LocalDate data, String endereco, Condutor condutor, Seguro seguro){
+	       
+			this.id = generateId();
 	        this.data = data;
 	        this.endereco = endereco;
+			this.condutor = condutor;
+			this.seguro = seguro;
 	
 	    }
 		

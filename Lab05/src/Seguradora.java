@@ -136,20 +136,7 @@ public class Seguradora {
     }
 
 
-    public boolean gerarSinistro(Veiculo veiculo, Cliente cliente, String enderecoSinistro){ // vai pro seguro
-        /*
-         * Gera um sinistro para o cliente, recebendo o veículo e o cliente,
-         *  e o adiciona na lista dos sinistros
-         */
-
-        Seguradora seguradora = new Seguradora( cnpj, nome, telefone, email,  endereco);
-        LocalDate dataAgora = LocalDate.now();
-        
-        Sinistro sinistro = new Sinistro(dataAgora, enderecoSinistro, seguradora, veiculo, cliente);
-        listaSinistro.add(sinistro);
-
-        return true;
-    }
+ 
 
     public boolean visualizarSinistro(String cliente){ // vai pro seguro
         /*

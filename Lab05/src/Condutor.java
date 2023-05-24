@@ -10,6 +10,7 @@ public class Condutor {
     private String email;
     private LocalDate dataNascimento;
     private ArrayList<Sinistro> listaSinistro;
+    private boolean autorizado;
 
     public Condutor(String cpf, String nome, String telefone, String endereco
         , String email, LocalDate dataNascimento) {
@@ -20,6 +21,19 @@ public class Condutor {
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.listaSinistro = new ArrayList<Sinistro>();
+        this.autorizado = true;
+    }
+
+    public void setListaSinistro(ArrayList<Sinistro> listaSinistro) {
+        this.listaSinistro = listaSinistro;
+    }
+
+    public boolean getAutorizado() {
+        return this.autorizado;
+    }
+
+    public void setEstaAutorizado(boolean estaAutorizado) {
+        this.autorizado = estaAutorizado;
     }
 
     public String getCpf() {
@@ -68,6 +82,21 @@ public class Condutor {
 
     public ArrayList<Sinistro> getListaSinistro() {
         return this.listaSinistro;
+    }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " cpf='" + getCpf() + "'" +
+            ", nome='" + getNome() + "'" +
+            ", telefone='" + getTelefone() + "'" +
+            ", endereco='" + getEndereco() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", dataNascimento='" + getDataNascimento() + "'" +
+            ", listaSinistro='" + getListaSinistro() + "'" +
+            ", estaAutorizado='" + getAutorizado() + "'" +
+            "}";
     }
 
     // adicionarSinistro()

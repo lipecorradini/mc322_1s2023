@@ -96,14 +96,14 @@ public abstract class Seguro {
 
 
     // abstract desautorizarCondutor() -> opcional
-    public abstract boolean desautorizarCondutor();
+    public abstract boolean desautorizarCondutor(Condutor condutor);
 
     // abstract autorizarCondutor() -> opcional
-    public abstract boolean autorizarCondutor();
+    public abstract boolean autorizarCondutor(Condutor condutor);
 
     // abstract calcularValor() -> opcional
-    public abstract double calcularValor();
+    public abstract double calcularValor(Condutor condutor);
 
     // abstract gerarSinistro() -> opcional
-    public abstract boolean gerarSinistro();
+    public abstract boolean gerarSinistro(Seguro seguro, Condutor condutor, String enderecoSinistro);
 }
