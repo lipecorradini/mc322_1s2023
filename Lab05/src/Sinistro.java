@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Sinistro {
 
-		private int id;
+		private final int id;
 		private LocalDate data;
 		private String endereco;
 		private Condutor condutor;
@@ -34,10 +34,6 @@ public class Sinistro {
 			return id;
 		}
 		
-		public void setId(int id) {
-			this.id = id;
-		}
-		
 		public LocalDate getData() {
 			return data;
 		}
@@ -54,6 +50,14 @@ public class Sinistro {
 	        this.endereco = endereco;
 	    }
 		
+		public String getCondutor(){
+			return condutor.getNome();
+		}
+
+		public int getSeguro(){
+			return seguro.getId();
+		}
+
 
 	@Override
 	public String toString() {

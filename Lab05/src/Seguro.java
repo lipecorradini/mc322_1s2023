@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Seguro {
-    
+
     private int id;
     private LocalDate dataInicio;
     private LocalDate dataFim;
@@ -12,9 +12,8 @@ public abstract class Seguro {
     private ArrayList<Condutor> listaCondutores;
     private int valorMensal;
 
-
-    public Seguro(int id, LocalDate dataInicio, LocalDate dataFim, Seguradora seguradora, ArrayList<Sinistro> listaSinistros
-                    , ArrayList<Condutor> listaCondutores, int valorMensal) {
+    public Seguro(int id, LocalDate dataInicio, LocalDate dataFim, Seguradora seguradora,
+            ArrayList<Sinistro> listaSinistros, ArrayList<Condutor> listaCondutores, int valorMensal) {
         this.id = generateId();
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -25,12 +24,12 @@ public abstract class Seguro {
     }
 
     private int generateId() {
-			
+
         Random gerador = new Random();
         int limite = 999999999;
         int novoId = gerador.nextInt(limite);
         return novoId;
-        
+
     }
 
     public int getId() {
@@ -84,26 +83,21 @@ public abstract class Seguro {
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", dataInicio='" + getDataInicio() + "'" +
-            ", dataFim='" + getDataFim() + "'" +
-            ", seguradora='" + getSeguradora() + "'" +
-            ", listaSinistros='" + getListaSinistros() + "'" +
-            ", listaCondutores='" + getListaCondutores() + "'" +
-            ", valorMensal='" + getValorMensal() + "'" +
-            "}";
+                " id='" + getId() + "'" +
+                ", dataInicio='" + getDataInicio() + "'" +
+                ", dataFim='" + getDataFim() + "'" +
+                ", seguradora='" + getSeguradora() + "'" +
+                ", listaSinistros='" + getListaSinistros() + "'" +
+                ", listaCondutores='" + getListaCondutores() + "'" +
+                ", valorMensal='" + getValorMensal() + "'" +
+                "}";
     }
 
-
-    // abstract desautorizarCondutor() -> opcional
     public abstract boolean desautorizarCondutor(Condutor condutor);
 
-    // abstract autorizarCondutor() -> opcional
     public abstract boolean autorizarCondutor(Condutor condutor);
 
-    // abstract calcularValor() -> opcional
-    public abstract double calcularValor(Condutor condutor);
+    public abstract double calcularValor();
 
-    // abstract gerarSinistro() -> opcional
     public abstract boolean gerarSinistro(Seguro seguro, Condutor condutor, String enderecoSinistro);
 }

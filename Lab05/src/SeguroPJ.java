@@ -3,13 +3,13 @@ import java.time.Period;
 import java.util.ArrayList;
 
 public class SeguroPJ extends Seguro {
-    
+
     private Frota frota;
     private ClientePJ cliente;
 
-    public SeguroPJ(int id, LocalDate dataInicio, LocalDate dataFim, Seguradora seguradora
-    , ArrayList<Sinistro> listaSinistros, ArrayList<Condutor> listaCondutores,
-     int valorMensal,Frota frota, ClientePJ cliente) {
+    public SeguroPJ(int id, LocalDate dataInicio, LocalDate dataFim, Seguradora seguradora,
+            ArrayList<Sinistro> listaSinistros, ArrayList<Condutor> listaCondutores,
+            int valorMensal, Frota frota, ClientePJ cliente) {
 
         super(id, dataInicio, dataFim, seguradora, listaSinistros, listaCondutores, valorMensal);
         this.frota = frota;
@@ -32,22 +32,22 @@ public class SeguroPJ extends Seguro {
         this.cliente = cliente;
     }
 
-    public boolean gerarSinistro(Seguro seguro, Condutor condutor, String enderecoSinistro){
+    public boolean gerarSinistro(Seguro seguro, Condutor condutor, String enderecoSinistro) {
         /*
          * Gera um sinistro para o cliente, recebendo o veículo e o cliente,
-         *  e o adiciona na lista dos sinistros
+         * e o adiciona na lista dos sinistros do seguro
          */
 
         LocalDate dataAgora = LocalDate.now();
         Sinistro sinistro = new Sinistro(dataAgora, enderecoSinistro, condutor, seguro);
-        getSeguradora().getListaSinistro().add(sinistro);
+        getListaSinistros().add(sinistro);
 
         return true;
     }
 
-    public boolean autorizarCondutor(Condutor condutor){
+    public boolean autorizarCondutor(Condutor condutor) {
 
-        if(getListaCondutores().contains(condutor)){
+        if (getListaCondutores().contains(condutor)) {
             condutor.setEstaAutorizado(true);
             System.out.println("O condutor " + condutor.getNome() + " está autorizado!");
             return true;
@@ -57,10 +57,10 @@ public class SeguroPJ extends Seguro {
         return false;
 
     }
-    
-    public boolean desautorizarCondutor(Condutor condutor){
-        
-        if(getListaCondutores().contains(condutor)){
+
+    public boolean desautorizarCondutor(Condutor condutor) {
+
+        if (getListaCondutores().contains(condutor)) {
             condutor.setEstaAutorizado(false);
             System.out.println("O condutor " + condutor.getNome() + " está desautorizado!");
             return true;
@@ -70,14 +70,19 @@ public class SeguroPJ extends Seguro {
         return false;
     }
 
-    public double calcularValor(Condutor condutor){
+    public double calcularValor() {
 
-        return(CalcSeguro.VALOR_BASE.getFator() 
-        * (1 + 1/(frota.getListaVeiculos().size()))
-        * (1 + 1 / (Period.between(cliente.getDataFundacao(),LocalDate.now()).getYears()))
-        * (2 + getListaSinistros().size())
-        * (5 + condutor.getListaSinistro().size())
-        );
+        int qtdeSinistroCondutores = 0;
+        for (Condutor condutorCadastrado : getListaCondutores()) {
+            qtdeSinistroCondutores += condutorCadastrado.getListaSinistro().size();
+        }
+
+        return (CalcSeguro.VALOR_BASE.getFator()
+                * (10 + getCliente().getQtdeFuncionarios() / 10)
+                * (1 + 1 / (frota.getListaVeiculos().size()))
+                * (1 + 1 / (Period.between(cliente.getDataFundacao(), LocalDate.now()).getYears()))
+                * (2 + getListaSinistros().size() / 10)
+                * (5 + qtdeSinistroCondutores / 10));
     }
 
 }

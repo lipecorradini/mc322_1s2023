@@ -36,13 +36,13 @@ public class SeguroPF extends Seguro {
 
     public boolean gerarSinistro(Seguro seguro, Condutor condutor, String enderecoSinistro){
         /*
-         * Gera um sinistro para o cliente, recebendo o veículo e o cliente,
-         *  e o adiciona na lista dos sinistros
+         * Gera um sinistro para o cliente, recebendo o seguro e o condutor,
+         *  e o adiciona na lista dos sinistros do seguro
          */
 
         LocalDate dataAgora = LocalDate.now();
         Sinistro sinistro = new Sinistro(dataAgora, enderecoSinistro, condutor, seguro);
-        getSeguradora().getListaSinistro().add(sinistro);
+        getListaSinistros().add(sinistro);
 
         return true;
     }
@@ -72,13 +72,18 @@ public class SeguroPF extends Seguro {
         return false;
     }
 
-    public double calcularValor(Condutor condutor){
+    public double calcularValor(){
+
+        int qtdeSinistroCondutores = 0;
+        for(Condutor condutorCadastrado : getListaCondutores()){
+            qtdeSinistroCondutores += condutorCadastrado.getListaSinistro().size();
+        }
         
         return (CalcSeguro.VALOR_BASE.getFator() 
         * CalcSeguro.getFatorIdade(Period.between(cliente.getDataNascimento(), LocalDate.now()).getYears()).getFator()
         * (1 + 1/(cliente.getListaVeiculos().size() + 2)
         * (2 + getListaSinistros().size()/10) 
-        * (5 + condutor.getListaSinistro().size()/10))
+        * (5 + qtdeSinistroCondutores/10))
         );
     }
 

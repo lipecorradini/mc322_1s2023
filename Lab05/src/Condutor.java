@@ -99,6 +99,14 @@ public class Condutor {
             "}";
     }
 
-    // adicionarSinistro()
+    public void adicionarSinistro(Sinistro sinistro){
+        /*
+         * Adiciona um Sinistro à lista de sinistros do condutor
+         */
+        
+        listaSinistro.add(sinistro);
+        System.out.println("O Sinistro de código " + sinistro.getId()
+         + " foi adicionado ao nosso sistema!");
+    }
 
 }
