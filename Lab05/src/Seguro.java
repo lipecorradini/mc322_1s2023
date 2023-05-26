@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public abstract class Seguro {
 
@@ -10,17 +11,16 @@ public abstract class Seguro {
     private Seguradora seguradora;
     private ArrayList<Sinistro> listaSinistros;
     private ArrayList<Condutor> listaCondutores;
-    private int valorMensal;
+    private double valorMensal;
 
-    public Seguro(int id, LocalDate dataInicio, LocalDate dataFim, Seguradora seguradora,
-            ArrayList<Sinistro> listaSinistros, ArrayList<Condutor> listaCondutores, int valorMensal) {
+    public Seguro(LocalDate dataInicio, LocalDate dataFim, Seguradora seguradora) {
         this.id = generateId();
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.seguradora = seguradora;
         this.listaSinistros = new ArrayList<Sinistro>();
         this.listaCondutores = new ArrayList<Condutor>();
-        this.valorMensal = valorMensal;
+        this.valorMensal = calcularValor();
     }
 
     private int generateId() {
@@ -72,12 +72,8 @@ public abstract class Seguro {
         return this.listaCondutores;
     }
 
-    public int getValorMensal() {
+    public double getValorMensal() {
         return this.valorMensal;
-    }
-
-    public void setValorMensal(int valorMensal) {
-        this.valorMensal = valorMensal;
     }
 
     @Override
@@ -93,11 +89,62 @@ public abstract class Seguro {
                 "}";
     }
 
-    public abstract boolean desautorizarCondutor(Condutor condutor);
+    public boolean autorizarCondutor(Condutor condutor) {
 
-    public abstract boolean autorizarCondutor(Condutor condutor);
+        if (getListaCondutores().contains(condutor)) {
+            condutor.setEstaAutorizado(true);
+            System.out.println("O condutor " + condutor.getNome() + " está autorizado!");
+            return true;
+
+        }
+        System.out.println("Não foi possível achar o condutor " + condutor.getNome());
+        return false;
+
+    }
+
+    public boolean desautorizarCondutor(Condutor condutor) {
+
+        if (getListaCondutores().contains(condutor)) {
+            condutor.setEstaAutorizado(false);
+            System.out.println("O condutor " + condutor.getNome() + " está desautorizado!");
+            return true;
+
+        }
+        System.out.println("Não foi possível achar o condutor " + condutor.getNome());
+        return false;
+    }
 
     public abstract double calcularValor();
 
-    public abstract boolean gerarSinistro(Seguro seguro, Condutor condutor, String enderecoSinistro);
+    public boolean gerarSinistro(Seguro seguro, Condutor condutor, String enderecoSinistro){
+        /*
+         * Gera um sinistro para o cliente, recebendo o seguro e o condutor,
+         *  e o adiciona na lista dos sinistros do seguro
+         */
+
+        LocalDate dataAgora = LocalDate.now();
+        Sinistro sinistro = new Sinistro(dataAgora, enderecoSinistro, condutor, seguro);
+        getListaSinistros().add(sinistro);
+
+        return true;
+    }
+    
+    public Condutor escolherCondutor() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite o número referente ao Condutor: \n");
+        int cont = 1;
+        for (Condutor condutorCadastrado : getListaCondutores()) {
+            System.out.println(cont + ") " + condutorCadastrado.getNome());
+            cont++;
+        }
+
+        int numeroCondutor = sc.nextInt();
+        sc.nextLine();
+
+        Condutor condutorEscolhido = getListaCondutores().get(numeroCondutor - 1);
+        sc.close();
+        return condutorEscolhido;
+
+    }
 }

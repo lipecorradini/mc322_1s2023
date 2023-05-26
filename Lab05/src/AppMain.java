@@ -360,7 +360,7 @@ public class AppMain {
                         for (Cliente cliente : seguradora.getListaClientes()) {
                             if (cliente.getNome().equals(nomeExcluido)) {
                                 clienteRemovido = true;
-                                seguradora.removerCliente(nomeExcluido);
+                                seguradora.removerCliente(nomeExcluido); // passar o cliente como parametro
                                 System.out.println("Cliente com nome " + nomeExcluido + " excluído!");
                             }
                             contador = contador + 1;

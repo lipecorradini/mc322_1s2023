@@ -74,19 +74,20 @@ public class ClientePF extends Cliente {
 	
 	public boolean cadastrarVeiculos(Veiculo veiculo){
 		/*
-		 * Adiciona um veículo na lista de veículos, e mostra o tamanho da lista
+		 * Adiciona um veículo na lista de veículos
 		 */
+
 	    listaVeiculos.add(veiculo);
-		//System.out.println("o numero de veiculos é: " + listaVeiculos.size());
 		return true;
 	}
 
-	public boolean removerVeiculos(Veiculo veiculo){
+	public boolean removerVeiculos(){
 		/*
 		 * Procura um veículo e o remove da lista
 		 */
+		Veiculo veiculo = escolherVeiculo();
 	    for(Veiculo carro : listaVeiculos){
-			if(carro == veiculo){
+			if(carro.equals(veiculo)){
 				listaVeiculos.remove(veiculo);
 				return true;
 			}
@@ -100,10 +101,29 @@ public class ClientePF extends Cliente {
 		 */
 		int numeroVeiculos = 0;
 		for(Veiculo carro: listaVeiculos){
-			System.out.println(carro.toString());
+			System.out.println(numeroVeiculos + ") " + carro.getPlaca() + " - " + carro.getModelo());
 			numeroVeiculos ++;
 		}
 		if(numeroVeiculos == 0) System.out.println("Não existem Veículos cadastrados!");
+	}
+
+	public Veiculo escolherVeiculo(){
+		
+		int count = 1;
+
+		System.out.println("Digite o número do veículo desejado: ");
+		for(Veiculo veiculosCadastrados : listaVeiculos){
+			System.out.println(count + ") " + veiculosCadastrados.getPlaca());
+			count ++;
+		}
+
+		Scanner sc = new Scanner(System.in);
+		int indexVeiculo = sc.nextInt();
+		sc.nextLine();
+		
+		Veiculo veiculoEscolhido = listaVeiculos.get(indexVeiculo - 1);
+		sc.close();
+		return veiculoEscolhido;
 	}
 
 }

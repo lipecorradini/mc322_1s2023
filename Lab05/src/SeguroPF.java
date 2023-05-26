@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
 
 public class SeguroPF extends Seguro {
     
@@ -8,15 +7,13 @@ public class SeguroPF extends Seguro {
     private ClientePF cliente;
 
 
-    public SeguroPF(int id, LocalDate dataInicio, LocalDate dataFim, Seguradora seguradora
-    , ArrayList<Sinistro> listaSinistros, ArrayList<Condutor> listaCondutores,
-     int valorMensal, Veiculo veiculo, ClientePF cliente) {
+    public SeguroPF( LocalDate dataInicio, LocalDate dataFim, Seguradora seguradora
+    , Veiculo veiculo, ClientePF cliente) {
 
-        super(id, dataInicio, dataFim, seguradora, listaSinistros, listaCondutores, valorMensal);
+        super(dataInicio, dataFim, seguradora);
         this.veiculo = veiculo;
         this.cliente = cliente;
     }
-
 
     public Veiculo getVeiculo() {
         return this.veiculo;
@@ -32,44 +29,6 @@ public class SeguroPF extends Seguro {
 
     public void setCliente(ClientePF cliente) {
         this.cliente = cliente;
-    }
-
-    public boolean gerarSinistro(Seguro seguro, Condutor condutor, String enderecoSinistro){
-        /*
-         * Gera um sinistro para o cliente, recebendo o seguro e o condutor,
-         *  e o adiciona na lista dos sinistros do seguro
-         */
-
-        LocalDate dataAgora = LocalDate.now();
-        Sinistro sinistro = new Sinistro(dataAgora, enderecoSinistro, condutor, seguro);
-        getListaSinistros().add(sinistro);
-
-        return true;
-    }
-
-    public boolean autorizarCondutor(Condutor condutor){
-
-        if(getListaCondutores().contains(condutor)){
-            condutor.setEstaAutorizado(true);
-            System.out.println("O condutor " + condutor.getNome() + " está autorizado!");
-            return true;
-
-        }
-        System.out.println("Não foi possível achar o condutor " + condutor.getNome());
-        return false;
-
-    }
-    
-    public boolean desautorizarCondutor(Condutor condutor){
-        
-        if(getListaCondutores().contains(condutor)){
-            condutor.setEstaAutorizado(false);
-            System.out.println("O condutor " + condutor.getNome() + " está desautorizado!");
-            return true;
-
-        }
-        System.out.println("Não foi possível achar o condutor " + condutor.getNome());
-        return false;
     }
 
     public double calcularValor(){

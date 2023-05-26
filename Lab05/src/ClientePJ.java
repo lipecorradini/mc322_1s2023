@@ -50,7 +50,7 @@ public class ClientePJ extends Cliente{
         getVeiculosPorFrota();
     }
 
-    public void getVeiculosPorFrota(){
+    public void getVeiculosPorFrota(){ // retornar arraylist
 
         int contFrota = 0, contVeiculos = 0;
         for(Frota frotaCadastrada: listaFrota){
@@ -76,5 +76,23 @@ public class ClientePJ extends Cliente{
         return true;
 
     }
+
+    public Frota escolherFrota(){
+		
+		int count = 1;
+
+        System.out.println("Digite o número da frota que deseja: ");
+		for(Frota FrotasCadastrados : listaFrota){
+			System.out.println(count + ") " + FrotasCadastrados.getCode());
+		}
+
+		Scanner sc = new Scanner(System.in);
+		int indexFrota = sc.nextInt();
+        sc.nextLine();
+
+		Frota FrotaEscolhido = listaFrota.get(indexFrota - 1);
+		sc.close();
+		return FrotaEscolhido;
+	}
 }
 

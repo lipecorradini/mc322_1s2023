@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Frota {
 
@@ -44,18 +45,33 @@ public class Frota {
 
     }
 
-    public boolean removerVeiculo(Veiculo veiculo) {
+    public boolean removerVeiculo() {
 
-        if (listaVeiculos.contains(veiculo)) {
-            listaVeiculos.remove(veiculo);
-            System.out.println("Veículo de placa " + veiculo.getPlaca() + " removido!");
-            return true;
+        Veiculo veiculo = escolherVeiculo();
 
-        } else {
-            System.out.println("Desculpe, não encontramos o veículo de placa "
-                    + veiculo.getPlaca() + " em nosso Sistema.");
-            return false;
+        listaVeiculos.remove(veiculo);
+        System.out.println("Veículo de placa " + veiculo.getPlaca() + " removido!");
+        return true;
+
+    }
+
+    public Veiculo escolherVeiculo(){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite o número referente ao Veiculo: \n");
+        int cont = 1;
+        for(Veiculo veiculoCadastrado : getListaVeiculos()){
+            System.out.println(cont + ") " + veiculoCadastrado.getPlaca());
+            cont ++;
         }
+        
+        int numeroVeiculo = sc.nextInt();
+        sc.nextLine();
+        
+        Veiculo VeiculoEscolhido = getListaVeiculos().get(numeroVeiculo - 1);
+        sc.close();
+        
+        return VeiculoEscolhido;
 
     }
 }
