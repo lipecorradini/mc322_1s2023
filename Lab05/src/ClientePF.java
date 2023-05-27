@@ -78,6 +78,8 @@ public class ClientePF extends Cliente {
 		 */
 
 	    listaVeiculos.add(veiculo);
+		System.out.println("Veículo de placa " + veiculo.getPlaca() + " adicionado com sucesso ao cliente " + getNome() + "!\n");
+
 		return true;
 	}
 
@@ -111,7 +113,7 @@ public class ClientePF extends Cliente {
 		
 		int count = 1;
 
-		System.out.println("Digite o número do veículo desejado: ");
+		System.out.println("Digite o número equivalente ao veículo desejado: ");
 		for(Veiculo veiculosCadastrados : listaVeiculos){
 			System.out.println(count + ") " + veiculosCadastrados.getPlaca());
 			count ++;
@@ -119,10 +121,12 @@ public class ClientePF extends Cliente {
 
 		Scanner sc = new Scanner(System.in);
 		int indexVeiculo = sc.nextInt();
-		sc.nextLine();
+		//sc.nextLine();
 		
+
 		Veiculo veiculoEscolhido = listaVeiculos.get(indexVeiculo - 1);
-		sc.close();
+
+		//sc.close();
 		return veiculoEscolhido;
 	}
 

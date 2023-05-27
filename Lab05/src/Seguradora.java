@@ -76,11 +76,22 @@ public class Seguradora {
          * se tiver, não adiciona e retorna falso
          */
 
+        if (cliente instanceof ClientePF && !Validacao.validarCPF(((ClientePF) (cliente)).getCpf())) {
+            System.out.println("O CPF do cliente não é válido! ");
+            return false;
+        }
+
+        if (cliente instanceof ClientePJ && !Validacao.validarCNPJ(((ClientePJ) (cliente)).getCNPJ())) {
+            System.out.println("O CNPJ do cliente não é válido! ");
+            return false;
+        }
+
         if (listaClientes.indexOf(cliente) == -1) {
             listaClientes.add(cliente);
             System.out.println("Cliente " + cliente.getNome() + " cadastrado no sistema com sucesso!");
             return true;
         }
+
         System.out.println("Cliente " + cliente.getNome() + " já está em nosso sistema!");
 
         return false;
@@ -153,16 +164,17 @@ public class Seguradora {
 
         if (cliente instanceof ClientePF) { // Pessoa Física
 
-            SeguroPF novoSeguroPF = new SeguroPF(LocalDate.now(), LocalDate.now().plusYears(10), this,
-                    ((ClientePF) (cliente)).escolherVeiculo(), (ClientePF) (cliente));
+            Veiculo veiculoEscolhido = ((ClientePF) (cliente)).escolherVeiculo();
+            SeguroPF novoSeguroPF = new SeguroPF(LocalDate.now(), this, veiculoEscolhido, (ClientePF) (cliente));
             listaSeguros.add(novoSeguroPF);
-            System.out.println("Seguro de código " + novoSeguroPF.getId() + " adicionado com sucesso!");
+            System.out.println("Seguro de código " + novoSeguroPF.getId() + " adicionado com sucesso ao cliente " + cliente.getNome() + "!\n");
 
         } else {
-            SeguroPJ novoSeguroPJ = new SeguroPJ(LocalDate.now(), LocalDate.now().plusYears(10), this,
-                    ((ClientePJ) (cliente)).escolherFrota(), (ClientePJ) (cliente));
+            Frota frotaEscolhida = ((ClientePJ) (cliente)).escolherFrota();
+            SeguroPJ novoSeguroPJ = new SeguroPJ(LocalDate.now(), this,
+                    frotaEscolhida, (ClientePJ) (cliente));
             listaSeguros.add(novoSeguroPJ);
-            System.out.println("Seguro de código " + novoSeguroPJ.getId() + " adicionado com sucesso!");
+            System.out.println("Seguro de código " + novoSeguroPJ.getId() + " adicionado com sucesso ao cliente " + cliente.getNome() + "!\n");
 
         }
 
@@ -183,7 +195,7 @@ public class Seguradora {
         int indexSeguro = sc.nextInt();
         sc.nextLine();
 
-        sc.close();
+        // sc.close();
 
         Seguro seguroCancelado = listaSeguros.get(indexSeguro);
         listaSeguros.remove(seguroCancelado);
@@ -247,7 +259,7 @@ public class Seguradora {
 
         int count = 1;
 
-        System.out.println("Digite o número do cliente que deseja: ");
+        System.out.println("Digite o número equivalente ao cliente que deseja: ");
         for (Cliente cliente : listaClientes) {
             System.out.println(count + ") " + cliente.getNome());
             count++;
@@ -257,8 +269,7 @@ public class Seguradora {
         int indexCliente = sc.nextInt();
 
         Cliente clienteEscolhido = listaClientes.get(indexCliente - 1);
-        sc.close();
-
+        // sc.close();
         return clienteEscolhido;
     }
 

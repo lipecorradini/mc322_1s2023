@@ -13,14 +13,14 @@ public abstract class Seguro {
     private ArrayList<Condutor> listaCondutores;
     private double valorMensal;
 
-    public Seguro(LocalDate dataInicio, LocalDate dataFim, Seguradora seguradora) {
+    public Seguro(LocalDate dataInicio, Seguradora seguradora) {
         this.id = generateId();
         this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
+        this.dataFim = dataInicio.plusYears(5);
         this.seguradora = seguradora;
         this.listaSinistros = new ArrayList<Sinistro>();
         this.listaCondutores = new ArrayList<Condutor>();
-        this.valorMensal = calcularValor();
+        this.valorMensal = 0;
     }
 
     private int generateId() {
@@ -69,7 +69,12 @@ public abstract class Seguro {
     }
 
     public ArrayList<Condutor> getListaCondutores() {
+    
         return this.listaCondutores;
+    }
+
+    public void setValorMensal(double valorMensal) {
+        this.valorMensal = valorMensal;
     }
 
     public double getValorMensal() {
@@ -116,14 +121,15 @@ public abstract class Seguro {
 
     public abstract double calcularValor();
 
-    public boolean gerarSinistro(Seguro seguro, Condutor condutor, String enderecoSinistro){
+    public boolean gerarSinistro(Condutor condutor, String enderecoSinistro){
         /*
          * Gera um sinistro para o cliente, recebendo o seguro e o condutor,
          *  e o adiciona na lista dos sinistros do seguro
          */
 
         LocalDate dataAgora = LocalDate.now();
-        Sinistro sinistro = new Sinistro(dataAgora, enderecoSinistro, condutor, seguro);
+        Sinistro sinistro = new Sinistro(dataAgora, enderecoSinistro, condutor, this);
+        condutor.adicionarSinistro(sinistro);
         getListaSinistros().add(sinistro);
 
         return true;
@@ -135,15 +141,17 @@ public abstract class Seguro {
         System.out.println("Digite o número referente ao Condutor: \n");
         int cont = 1;
         for (Condutor condutorCadastrado : getListaCondutores()) {
-            System.out.println(cont + ") " + condutorCadastrado.getNome());
-            cont++;
+            if(condutorCadastrado.getAutorizado()){
+                System.out.println(cont + ") " + condutorCadastrado.getNome());
+                cont++;
+            }
         }
 
         int numeroCondutor = sc.nextInt();
         sc.nextLine();
 
         Condutor condutorEscolhido = getListaCondutores().get(numeroCondutor - 1);
-        sc.close();
+        //sc.close();
         return condutorEscolhido;
 
     }

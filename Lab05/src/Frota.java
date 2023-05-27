@@ -69,7 +69,7 @@ public class Frota {
         sc.nextLine();
         
         Veiculo VeiculoEscolhido = getListaVeiculos().get(numeroVeiculo - 1);
-        sc.close();
+        //sc.close();
         
         return VeiculoEscolhido;
 

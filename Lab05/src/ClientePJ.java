@@ -9,7 +9,7 @@ public class ClientePJ extends Cliente{
     private int qtdeFuncionarios;
 
     public ClientePJ(String nome , String endereco , LocalDate dataLicenca , String CNPJ ,
-     LocalDate dataFundacao, double valorSeguro, String telefone, String email, int qtdeFuncionarios){
+     LocalDate dataFundacao, String telefone, String email, int qtdeFuncionarios){
 
         super ( nome , endereco , telefone, email);
         this.CNPJ = CNPJ;
@@ -72,16 +72,41 @@ public class ClientePJ extends Cliente{
             return false;
         } 
         listaFrota.add(frota);
-        System.out.println("A frota de código " + frota.getCode() + "foi adicionada com sucesso!");
+        System.out.println("A frota de código " + frota.getCode() + " foi adicionada com sucesso!\n");
         return true;
 
+    }
+
+    public boolean atualizarFrota(Veiculo veiculo){
+
+        Frota frota = escolherFrota();
+
+        if(frota.getListaVeiculos().contains(veiculo)){
+            frota.getListaVeiculos().remove(veiculo);
+            System.out.println("Veículo de placa " + veiculo.getPlaca() + " removido da frota de código " + frota.getCode() + "\n");
+
+        }else{
+            frota.getListaVeiculos().add(veiculo);
+            System.out.println("Veículo de placa " + veiculo.getPlaca() + " adicionado à frota de código " + frota.getCode() + "\n");
+
+        }
+        return true;
+    }
+
+    public boolean atualizarFrota(){
+
+        Frota frota = escolherFrota();
+        listaFrota.remove(frota);
+        System.out.println("Frota de código " + frota.getCode() + " removida do sistema! \n");
+
+        return true;
     }
 
     public Frota escolherFrota(){
 		
 		int count = 1;
 
-        System.out.println("Digite o número da frota que deseja: ");
+        System.out.println("Digite o número equivalente à frota que deseja: ");
 		for(Frota FrotasCadastrados : listaFrota){
 			System.out.println(count + ") " + FrotasCadastrados.getCode());
 		}
@@ -91,8 +116,8 @@ public class ClientePJ extends Cliente{
         sc.nextLine();
 
 		Frota FrotaEscolhido = listaFrota.get(indexFrota - 1);
-		sc.close();
-		return FrotaEscolhido;
+
+        return FrotaEscolhido;
 	}
 }
 

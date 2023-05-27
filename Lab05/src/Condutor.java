@@ -103,10 +103,10 @@ public class Condutor {
         /*
          * Adiciona um Sinistro à lista de sinistros do condutor
          */
-        
+
         listaSinistro.add(sinistro);
         System.out.println("O Sinistro de código " + sinistro.getId()
-         + " foi adicionado ao nosso sistema!");
+         + " foi adicionado ao condutor(a) " + getNome() + " em nosso sistema!");
     }
 
 }
