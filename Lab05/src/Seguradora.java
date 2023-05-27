@@ -76,7 +76,6 @@ public class Seguradora {
          * se tiver, não adiciona e retorna falso
          */
 
-        
         if (listaClientes.indexOf(cliente) == -1) {
             listaClientes.add(cliente);
             System.out.println("Cliente " + cliente.getNome() + " cadastrado no sistema com sucesso!");
@@ -133,7 +132,6 @@ public class Seguradora {
          * que foi passado por parâmetro
          */
 
-
         int counter = 0;
 
         for (Cliente clienteInfo : listaClientes) {
@@ -156,13 +154,13 @@ public class Seguradora {
         if (cliente instanceof ClientePF) { // Pessoa Física
 
             SeguroPF novoSeguroPF = new SeguroPF(LocalDate.now(), LocalDate.now().plusYears(10), this,
-                    ((ClientePF)(cliente)).escolherVeiculo(), (ClientePF)(cliente));
+                    ((ClientePF) (cliente)).escolherVeiculo(), (ClientePF) (cliente));
             listaSeguros.add(novoSeguroPF);
             System.out.println("Seguro de código " + novoSeguroPF.getId() + " adicionado com sucesso!");
 
-        }else{
+        } else {
             SeguroPJ novoSeguroPJ = new SeguroPJ(LocalDate.now(), LocalDate.now().plusYears(10), this,
-                     ((ClientePJ)(cliente)).escolherFrota(), (ClientePJ)(cliente));
+                    ((ClientePJ) (cliente)).escolherFrota(), (ClientePJ) (cliente));
             listaSeguros.add(novoSeguroPJ);
             System.out.println("Seguro de código " + novoSeguroPJ.getId() + " adicionado com sucesso!");
 
@@ -172,11 +170,11 @@ public class Seguradora {
 
     }
 
-    public boolean cancelarSeguro(){
-        
+    public boolean cancelarSeguro() {
+
         int cont = 1;
         System.out.println("Digite o número do Seguro que quer cancelar: ");
-        for(Seguro seguroCadastrado : listaSeguros){
+        for (Seguro seguroCadastrado : listaSeguros) {
             System.out.println(cont + ") " + seguroCadastrado.getId());
 
         }
@@ -184,10 +182,10 @@ public class Seguradora {
         Scanner sc = new Scanner(System.in);
         int indexSeguro = sc.nextInt();
         sc.nextLine();
-        
+
         sc.close();
 
-        Seguro seguroCancelado = listaSeguros.get(indexSeguro);        
+        Seguro seguroCancelado = listaSeguros.get(indexSeguro);
         listaSeguros.remove(seguroCancelado);
         System.out.println("Seguro de índice " + seguroCancelado.getId() + " cancelado!");
 
@@ -195,20 +193,21 @@ public class Seguradora {
 
     }
 
-    public ArrayList<Seguro> getSegurosPorCliente(){
+    public ArrayList<Seguro> getSegurosPorCliente() {
 
         Cliente cliente = escolherCliente();
-        
+
         ArrayList<Seguro> listaAuxiliar = new ArrayList<Seguro>();
 
         System.out.println("Seguros do Cliente " + cliente.getNome() + ": ");
-        for(Seguro seguroCadastrado : listaSeguros){
-            
-            if(cliente instanceof ClientePF && seguroCadastrado instanceof SeguroPF && ((SeguroPF)(seguroCadastrado)).getCliente() == ((ClientePF)(cliente))){
+        for (Seguro seguroCadastrado : listaSeguros) {
+
+            if (cliente instanceof ClientePF && seguroCadastrado instanceof SeguroPF
+                    && ((SeguroPF) (seguroCadastrado)).getCliente() == ((ClientePF) (cliente))) {
                 listaAuxiliar.add(seguroCadastrado);
                 System.out.println("- " + seguroCadastrado.getId());
-            }
-            else if(cliente instanceof ClientePJ && seguroCadastrado instanceof SeguroPJ && ((SeguroPJ)(seguroCadastrado)).getCliente() == ((ClientePJ)(cliente))){
+            } else if (cliente instanceof ClientePJ && seguroCadastrado instanceof SeguroPJ
+                    && ((SeguroPJ) (seguroCadastrado)).getCliente() == ((ClientePJ) (cliente))) {
                 listaAuxiliar.add(seguroCadastrado);
                 System.out.println("- " + seguroCadastrado.getId());
             }
@@ -217,22 +216,23 @@ public class Seguradora {
         return listaAuxiliar;
     }
 
-    public ArrayList<Sinistro> getSinistrosPorCliente(){
+    public ArrayList<Sinistro> getSinistrosPorCliente() {
 
         Cliente cliente = escolherCliente();
         ArrayList<Sinistro> listaAuxiliar = new ArrayList<Sinistro>();
 
         System.out.println("Sinistros do Cliente " + cliente.getNome() + ": ");
-        for(Seguro seguroCadastrado : listaSeguros){
-            
-            if(cliente instanceof ClientePF && seguroCadastrado instanceof SeguroPF && ((SeguroPF)(seguroCadastrado)).getCliente() == ((ClientePF)(cliente))){
-                for(Sinistro sinistro : seguroCadastrado.getListaSinistros()){
+        for (Seguro seguroCadastrado : listaSeguros) {
+
+            if (cliente instanceof ClientePF && seguroCadastrado instanceof SeguroPF
+                    && ((SeguroPF) (seguroCadastrado)).getCliente() == ((ClientePF) (cliente))) {
+                for (Sinistro sinistro : seguroCadastrado.getListaSinistros()) {
                     listaAuxiliar.add(sinistro);
                     System.out.println("- " + sinistro.getId());
                 }
-            }
-            else if(cliente instanceof ClientePJ && seguroCadastrado instanceof SeguroPJ && ((SeguroPJ)(seguroCadastrado)).getCliente() == ((ClientePJ)(cliente))){
-                for(Sinistro sinistro : seguroCadastrado.getListaSinistros()){
+            } else if (cliente instanceof ClientePJ && seguroCadastrado instanceof SeguroPJ
+                    && ((SeguroPJ) (seguroCadastrado)).getCliente() == ((ClientePJ) (cliente))) {
+                for (Sinistro sinistro : seguroCadastrado.getListaSinistros()) {
                     listaAuxiliar.add(sinistro);
                     System.out.println("- " + sinistro.getId());
                 }
@@ -243,24 +243,24 @@ public class Seguradora {
 
     }
 
-    public Cliente escolherCliente(){
+    public Cliente escolherCliente() {
 
         int count = 1;
 
         System.out.println("Digite o número do cliente que deseja: ");
-		for(Cliente cliente : listaClientes){
-			System.out.println(count + ") " + cliente.getNome());
-            count ++;
-		}
+        for (Cliente cliente : listaClientes) {
+            System.out.println(count + ") " + cliente.getNome());
+            count++;
+        }
 
-		Scanner sc = new Scanner(System.in);
-		int indexCliente = sc.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int indexCliente = sc.nextInt();
 
-		Cliente clienteEscolhido = listaClientes.get(indexCliente - 1);
-		sc.close();
+        Cliente clienteEscolhido = listaClientes.get(indexCliente - 1);
+        sc.close();
 
-		return clienteEscolhido;
-	}
+        return clienteEscolhido;
+    }
 
     public void calcularReceita() {
         /*
@@ -269,9 +269,9 @@ public class Seguradora {
          */
 
         System.out.println("Receita de todos os Clientes da Seguradora:  ");
-        for(Seguro seguro : listaSeguros){
-                double valorSeguro = seguro.calcularValor();
-                System.out.println("[1] " + seguro.getId() + " = R$" + valorSeguro);
+        for (Seguro seguro : listaSeguros) {
+            double valorSeguro = seguro.calcularValor();
+            System.out.println("[1] " + seguro.getId() + " = R$" + valorSeguro);
         }
 
     }
