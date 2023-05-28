@@ -91,6 +91,7 @@ public class ClientePF extends Cliente {
 	    for(Veiculo carro : listaVeiculos){
 			if(carro.equals(veiculo)){
 				listaVeiculos.remove(veiculo);
+				System.out.println("Veículo de placa " + veiculo.getPlaca() + " do cliente " + getNome() +  " removido do sistema com sucesso! ");
 				return true;
 			}
 		}

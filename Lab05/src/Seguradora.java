@@ -146,15 +146,19 @@ public class Seguradora {
         int counter = 0;
 
         for (Cliente clienteInfo : listaClientes) {
-            if (tipoCliente == "ClientePJ" && clienteInfo instanceof ClientePJ) {
+            if (tipoCliente.equals("ClientePJ") && clienteInfo instanceof ClientePJ) {
                 counter++;
                 System.out.println(counter + ")" + clienteInfo.getNome());
             }
 
-            if (tipoCliente == "ClientePF" && clienteInfo instanceof ClientePF) {
+            if (tipoCliente.equals("ClientePF") && clienteInfo instanceof ClientePF) {
                 counter++;
                 System.out.println(counter + ")" + clienteInfo.getNome());
             }
+        }
+
+        if(counter == 0){
+            System.out.println("Não existem clientes cadastrados!");
         }
     }
 
@@ -271,6 +275,31 @@ public class Seguradora {
         Cliente clienteEscolhido = listaClientes.get(indexCliente - 1);
         // sc.close();
         return clienteEscolhido;
+    }
+
+    public Seguro escolherSeguro(){
+
+        int count = 1;
+
+        System.out.println("Digite o número equivalente ao Seguro que deseja: ");
+        for (Seguro seguro : listaSeguros) {
+            System.out.println(count + ") " + seguro.getId());
+            count++;
+        }
+
+        Scanner sc = new Scanner(System.in);
+        int indexSeguro = sc.nextInt();
+
+        Seguro SeguroEscolhido = listaSeguros.get(indexSeguro - 1);
+        // sc.close();
+        return SeguroEscolhido;
+    }
+
+    public void removerSeguro(){
+        
+        Seguro seguro = escolherSeguro();
+        listaSeguros.remove(seguro);
+        System.out.println("O Seguro de id " + seguro.getId() + " foi removido com sucesso! ");
     }
 
     public void calcularReceita() {

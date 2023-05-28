@@ -155,4 +155,41 @@ public abstract class Seguro {
         return condutorEscolhido;
 
     }
+
+    public void listarSinistros(){
+
+        for(Sinistro sinistro : listaSinistros){
+            System.out.println("    -" + sinistro.getId() + " do condutor " + sinistro.getCondutor());
+        }
+    }
+
+    public void excluirSinistro(){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite o número referente ao Sinistro: \n");
+        int cont = 1;
+        for (Sinistro SinistroCadastrado : getListaSinistros()) {
+            
+            System.out.println(cont + ") " + SinistroCadastrado.getId());
+            cont++;
+        }
+
+        int numeroSinistro = sc.nextInt();
+        sc.nextLine();
+
+        Sinistro sinistroEscolhido = getListaSinistros().get(numeroSinistro - 1);
+        //sc.close();
+        
+        listaSinistros.remove(sinistroEscolhido);
+        System.out.println("Sinistro de código " + sinistroEscolhido.getId() + " removido com sucesso! ");
+    }
+
+    public void excluirCondutor(){
+
+        Condutor condutor = escolherCondutor();
+        listaCondutores.remove(condutor);
+        System.out.println("O condutor " + condutor.getNome() + " foi removido do sistema! ");
+
+        
+    }
 }

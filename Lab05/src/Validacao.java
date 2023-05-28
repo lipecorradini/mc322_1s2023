@@ -120,7 +120,7 @@ public class Validacao {
          */
         for(int i = 0; i < nome.length(); i++){
             char letra = nome.charAt(i);
-            if(!Character.isAlphabetic(letra)){
+            if(!Character.isAlphabetic(letra) && letra != '_'){
                 return false;
             }
 

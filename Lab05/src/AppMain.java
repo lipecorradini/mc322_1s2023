@@ -10,10 +10,12 @@ public class AppMain {
 
 
        // Chamando o menu estático
-        MenuEstatico menuEstatico = new MenuEstatico();
-        menuEstatico.GerarMenuEstatico();
+       // MenuEstatico menuEstatico = new MenuEstatico();
+       // menuEstatico.GerarMenuEstatico();
 
         // Chamando o menu dinamico
+        MenuInterativo menuInterativo = new MenuInterativo();
+        menuInterativo.GerarMenuInterativo();
         //MenuInterativo(listaClientes, listaSeguradora, seguradora);
 
     }
