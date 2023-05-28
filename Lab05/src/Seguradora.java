@@ -305,12 +305,15 @@ public class Seguradora {
          * Calcula o valor da receita para cada seguro para cada cliente da seguradora
          * 
          */
-
+        int cont = 0;
         System.out.println("Receita de todos os Clientes da Seguradora:  ");
         for (Seguro seguro : listaSeguros) {
             double valorSeguro = seguro.calcularValor();
-            System.out.println("[1] " + seguro.getId() + " = R$" + valorSeguro);
+            System.out.println("[" + cont + "] " + seguro.getId() + " = R$" + valorSeguro);
+            cont++;
         }
+
+        if(cont == 0) System.out.println("Não existem Clientes cadastrados na seguradora desejada! ");
 
     }
 

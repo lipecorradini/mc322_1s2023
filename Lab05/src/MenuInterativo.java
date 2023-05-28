@@ -13,16 +13,30 @@ public class MenuInterativo {
 
     public void GerarMenuInterativo() {
 
+        Scanner sc = new Scanner(System.in);
+
         Seguradora seguradora = new Seguradora("36.495.490/0001-91", "Safety Seguradora", "(81)3361-6502",
                 "safetyseguradora@gmail.com", "Av Orosimbo Maia, 2354");
 
         ArrayList<Seguradora> listaSeguradora = new ArrayList<Seguradora>();
+        Seguradora seguradoraEscolhida = seguradora;
 
         listaSeguradora.add(seguradora);
         boolean validacaoContinuar = true;
-        while (validacaoContinuar) {
-            ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
-        }
+        do{
+            int cont = 1;
+            System.out.println("---------- SELECIONANDO SEGURADORA -----------");
+
+            System.out.println("Digite o número referente à Seguradora desejada: ");
+            for(Seguradora seguradoraIterada : listaSeguradora){
+                System.out.println(cont + ") " + seguradoraIterada.getNome());
+                cont ++;
+            }
+            int indiceSeguradora = sc.nextInt();
+            seguradoraEscolhida = listaSeguradora.get(indiceSeguradora - 1);
+            ExecutarOperacao(listaSeguradora, seguradoraEscolhida, validacaoContinuar);
+
+        } while (validacaoContinuar);
     }
 
     public void ExecutarOperacao(ArrayList<Seguradora> listaSeguradora, Seguradora seguradora,
@@ -257,7 +271,8 @@ public class MenuInterativo {
 
 
                     case SAIR_CADASTRAR:
-                        ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
+
+                        break;
                 }
 
                 break;
@@ -341,7 +356,7 @@ public class MenuInterativo {
                         break;
 
                     case SAIR_LISTAR:
-                        ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
+
                         break;
                 }
                 break;
@@ -428,7 +443,7 @@ public class MenuInterativo {
                         }
 
                     case SAIR_EXCLUIR:
-                        ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
+
                         break;
 
                 }
@@ -446,13 +461,11 @@ public class MenuInterativo {
 
                 seguroEscolhidoSinistro.gerarSinistro(condutorEscolhidoSinistro, enderecoSinistro);
 
-                ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
                 break;
 
             case GERAR_SEGURO:
 
                 seguradora.gerarSeguro();
-                ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
 
                 break;
 
@@ -482,7 +495,6 @@ public class MenuInterativo {
                 System.out.println("---------- CALCULANDO RECEITA SEGURADORA -----------");
 
                 seguradora.calcularReceita();
-                ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
                 break;
 
             case SAIR:
