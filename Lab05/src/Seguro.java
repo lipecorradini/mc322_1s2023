@@ -69,7 +69,6 @@ public abstract class Seguro {
     }
 
     public ArrayList<Condutor> getListaCondutores() {
-    
         return this.listaCondutores;
     }
 
@@ -190,6 +189,14 @@ public abstract class Seguro {
         listaCondutores.remove(condutor);
         System.out.println("O condutor " + condutor.getNome() + " foi removido do sistema! ");
 
+
+    }
+
+    public void cadastrarCondutor(Condutor condutor){
+
+        listaCondutores.add(condutor);
+        System.out.println("O condutor " + condutor.getNome() + " foi adicionado ao sistema! ");
+        
         
     }
 }

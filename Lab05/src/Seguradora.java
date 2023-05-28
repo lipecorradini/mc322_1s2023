@@ -104,8 +104,6 @@ public class Seguradora {
          * e também remove seu respectivo seguro
          */
 
-        // fazer uma funcao escolhercliente ante dessa
-
         Cliente cliente = escolherCliente();
         int tipoCliente = -1;
         if (cliente instanceof ClientePF)
@@ -148,12 +146,12 @@ public class Seguradora {
         for (Cliente clienteInfo : listaClientes) {
             if (tipoCliente.equals("ClientePJ") && clienteInfo instanceof ClientePJ) {
                 counter++;
-                System.out.println(counter + ")" + clienteInfo.getNome());
+                System.out.println(counter + ") " + clienteInfo.getNome());
             }
 
             if (tipoCliente.equals("ClientePF") && clienteInfo instanceof ClientePF) {
                 counter++;
-                System.out.println(counter + ")" + clienteInfo.getNome());
+                System.out.println(counter + ") " + clienteInfo.getNome());
             }
         }
 

@@ -36,7 +36,7 @@ public class MenuInterativo {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         // Começando o menu interativo
-        System.out.println("---------- COMEÇANDO O MENU ----------");
+        System.out.println("---------- MENU DE OPERAÇÕES----------");
 
         System.out.println("Olá, seja bem vindo à seguradora!");
         System.out.println("Digite o número correto para a respectiva ação:");
@@ -56,7 +56,7 @@ public class MenuInterativo {
                 double operacaoCadastrar = 0;
 
                 System.out.println(
-                        "1) Cadastrar Cliente PF/PJ\n2) Cadastrar Veículos\n3) Cadastrar Seguradora\n4) Cadastrar Frota (PJ)");
+                        "1) Cadastrar Cliente PF/PJ\n2) Cadastrar Veículos\n3) Cadastrar Seguradora\n4) Cadastrar Frota (PJ)\n5) Cadastrar Condutor \n6) Voltar");
                 System.out.println("---------------------------------------------------");
                 operacaoCadastrar = sc.nextDouble();
                 sc.nextLine();
@@ -230,6 +230,32 @@ public class MenuInterativo {
 
                         break;
 
+                    case CADASTRAR_CONDUTOR:
+
+                        System.out.println("Nome: ");
+                        String nomeCondutor = sc.nextLine();
+
+                        System.out.println("CPF do Condutor: ");
+                        String cpfCondutor = sc.nextLine();
+
+                        System.out.println("Telefone: ");
+                        String telefoneCondutor = sc.nextLine();
+
+                        System.out.println("Email: ");
+                        String emailCondutor = sc.nextLine();
+
+                        System.out.println("Endereco: ");
+                        String enderecoCondutor = sc.nextLine();
+
+                        System.out.println("Data de Nascimento [dd/MMM/yyyy]: ");
+                        String dataNascimentoCondutor = sc.nextLine();
+                        LocalDate dataNascimentoCondutorDate = LocalDate.parse(dataNascimentoCondutor, dtf);
+                        
+                        Seguro seguro = seguradora.escolherSeguro();
+                        Condutor condutor = new Condutor(cpfCondutor, nomeCondutor, telefoneCondutor, enderecoCondutor, emailCondutor, dataNascimentoCondutorDate);
+                        seguro.cadastrarCondutor(condutor);
+
+
                     case SAIR_CADASTRAR:
                         ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
                 }
@@ -241,7 +267,7 @@ public class MenuInterativo {
 
                 System.out.println("1) Listar Cliente PF/PJ por Seguradora\n2) Listar Sinistros por Seguradora");
                 System.out.println(
-                        "3) Listar Sinistro por Cliente\n4) Listar Veículo por Cliente\n5) Listar Veículo por Seguradora\n6) Voltar");
+                        "3) Listar Sinistro por Cliente\n4) Listar Veículo por Cliente\n5) Listar Veículo por Seguradora\n6) Listar Seguro Por Cliente \n7) Voltar");
 
                 double operacaoListar = sc.nextDouble();
                 sc.nextLine();
@@ -288,18 +314,7 @@ public class MenuInterativo {
 
                     case LISTAR_SINISTRO_POR_CLIENTE:
 
-                        for (Cliente clienteIterado : seguradora.getListaClientes()) {
-                            System.out.println(clienteIterado.getNome());
-                            for (Seguro seguroCliente : seguradora.getListaSeguro()) {
-                                if (seguroCliente instanceof SeguroPF && ((SeguroPF) (seguroCliente)).getCliente()
-                                        .getNome().equals(clienteIterado.getNome())) {
-                                    seguroCliente.listarSinistros();
-                                } else if (seguroCliente instanceof SeguroPJ && ((SeguroPJ) (seguroCliente))
-                                        .getCliente().getNome().equals(clienteIterado.getNome())) {
-                                    seguroCliente.listarSinistros();
-                                }
-                            }
-                        }
+                        seguradora.getSinistrosPorCliente();
                         break;
 
                     case LISTAR_VEICULO_POR_CLIENTE:
@@ -314,11 +329,15 @@ public class MenuInterativo {
                     case LISTAR_VEICULO_POR_SEGURADORA:
                         // Listar Veículos por Seguradora
                         for (Seguradora seguradoraIterada : listaSeguradora) {
-                            System.out.println(seguradora.getNome() + ": ");
-                            for (Cliente clienteVeiculo : seguradora.getListaClientes()) {
+                            System.out.println(seguradoraIterada.getNome() + ": ");
+                            for (Cliente clienteVeiculo : seguradoraIterada.getListaClientes()) {
                                 clienteVeiculo.listarVeiculos();
                             }
                         }
+                        break;
+
+                    case LISTAR_SEGURO_POR_CLIENTE:
+                        seguradora.getSegurosPorCliente();
                         break;
 
                     case SAIR_LISTAR:
@@ -351,14 +370,18 @@ public class MenuInterativo {
 
                         System.out.println("Digite o nome do dono do veículo: ");
                         String nomeExcluido = sc.nextLine();
-                        
-                        for(Cliente clienteIterado : seguradora.getListaClientes()){
-                            if(clienteIterado instanceof ClientePF && ((ClientePF)(clienteIterado)).getNome().equals(nomeExcluido)){
-                                ((ClientePF)(clienteIterado)).removerVeiculos();
-                            }else if(clienteIterado instanceof ClientePJ && ((ClientePJ)(clienteIterado)).getNome().equals(nomeExcluido)){
-                                Veiculo veiculoExcluido = ((ClientePJ)(clienteIterado)).escolherFrota().escolherVeiculo();
-                                System.out.println("Agora, escolha novamente a frota que deseja remover o veículo, por favor: ");
-                                ((ClientePJ)(clienteIterado)).atualizarFrota(veiculoExcluido);                            
+
+                        for (Cliente clienteIterado : seguradora.getListaClientes()) {
+                            if (clienteIterado instanceof ClientePF
+                                    && ((ClientePF) (clienteIterado)).getNome().equals(nomeExcluido)) {
+                                ((ClientePF) (clienteIterado)).removerVeiculos();
+                            } else if (clienteIterado instanceof ClientePJ
+                                    && ((ClientePJ) (clienteIterado)).getNome().equals(nomeExcluido)) {
+                                Veiculo veiculoExcluido = ((ClientePJ) (clienteIterado)).escolherFrota()
+                                        .escolherVeiculo();
+                                System.out.println(
+                                        "Agora, escolha novamente a frota que deseja remover o veículo, por favor: ");
+                                ((ClientePJ) (clienteIterado)).atualizarFrota(veiculoExcluido);
                             }
                         }
 
@@ -369,38 +392,41 @@ public class MenuInterativo {
                         System.out.println("Digite o nome do cliente associado ao Sinistro que quer remover: ");
                         String nomeExcluidoSinistro = sc.nextLine();
 
-                        for(Seguro seguroIterado : seguradora.getListaSeguro()){
-                            if(seguroIterado instanceof SeguroPF && ((SeguroPF)(seguroIterado)).getCliente().getNome().equals(nomeExcluidoSinistro)){
+                        for (Seguro seguroIterado : seguradora.getListaSeguro()) {
+                            if (seguroIterado instanceof SeguroPF && ((SeguroPF) (seguroIterado)).getCliente().getNome()
+                                    .equals(nomeExcluidoSinistro)) {
                                 seguroIterado.excluirSinistro();
-                            
-                            }else if(seguroIterado instanceof SeguroPJ && ((SeguroPJ)(seguroIterado)).getCliente().getNome().equals(nomeExcluidoSinistro)){
+
+                            } else if (seguroIterado instanceof SeguroPJ && ((SeguroPJ) (seguroIterado)).getCliente()
+                                    .getNome().equals(nomeExcluidoSinistro)) {
                                 seguroIterado.excluirSinistro();
                             }
                         }
-                        
+
                         break;
 
                     case EXCLUIR_SEGURO:
-                        
+
                         seguradora.cancelarSeguro();
                         break;
 
                     case EXCLUIR_CONDUTOR:
-                        
+
                         seguradora.escolherSeguro().excluirCondutor();
                         break;
-                        
+
                     case EXCLUIR_FROTA:
 
                         System.out.println("Digite o CNPJ do cliente associado à frota que quer remover: ");
                         String cnpjExcluidoFrota = sc.nextLine();
 
-                        for(Cliente cliente: seguradora.getListaClientes()){
-                            if(cliente instanceof ClientePJ && ((ClientePJ)(cliente)).getCNPJ().equals(cnpjExcluidoFrota)){
-                                ((ClientePJ)(cliente)).atualizarFrota();
+                        for (Cliente cliente : seguradora.getListaClientes()) {
+                            if (cliente instanceof ClientePJ
+                                    && ((ClientePJ) (cliente)).getCNPJ().equals(cnpjExcluidoFrota)) {
+                                ((ClientePJ) (cliente)).atualizarFrota();
                             }
                         }
-                        
+
                     case SAIR_EXCLUIR:
                         ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
                         break;
@@ -419,7 +445,7 @@ public class MenuInterativo {
                 String enderecoSinistro = sc.nextLine();
 
                 seguroEscolhidoSinistro.gerarSinistro(condutorEscolhidoSinistro, enderecoSinistro);
-                
+
                 ExecutarOperacao(listaSeguradora, seguradora, validacaoContinuar);
                 break;
 
@@ -437,18 +463,20 @@ public class MenuInterativo {
                 System.out.println("Digite o nome do Cliente de quem deseja transferir o Seguro: ");
                 String nomeClienteRemetente = sc.nextLine();
 
-                for(Seguro seguro: seguradora.getListaSeguro()){
-                    if(seguro instanceof SeguroPF && ((SeguroPF)(seguro)).getCliente().getNome().equals(nomeClienteRemetente)){
-                        ((SeguroPF)(seguro)).setCliente((ClientePF)(seguradora.escolherCliente()));
+                for (Seguro seguro : seguradora.getListaSeguro()) {
+                    if (seguro instanceof SeguroPF
+                            && ((SeguroPF) (seguro)).getCliente().getNome().equals(nomeClienteRemetente)) {
+                        ((SeguroPF) (seguro)).setCliente((ClientePF) (seguradora.escolherCliente()));
                         System.out.println("Seguro transferido com sucesso!");
-                    
-                    }else if(seguro instanceof SeguroPJ && ((SeguroPJ)(seguro)).getCliente().getNome().equals(nomeClienteRemetente)){
-                        ((SeguroPJ)(seguro)).setCliente((ClientePJ)(seguradora.escolherCliente()));
+
+                    } else if (seguro instanceof SeguroPJ
+                            && ((SeguroPJ) (seguro)).getCliente().getNome().equals(nomeClienteRemetente)) {
+                        ((SeguroPJ) (seguro)).setCliente((ClientePJ) (seguradora.escolherCliente()));
                         System.out.println("Seguro transferido com sucesso!");
 
                     }
                 }
-
+                break;
 
             case CALCULAR_RECEITA_SEGURADORA:
                 System.out.println("---------- CALCULANDO RECEITA SEGURADORA -----------");
