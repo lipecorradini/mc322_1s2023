@@ -129,7 +129,7 @@ public class AppMain {
                         boolean ehValido = Validacao.validarNome(nome);
                         if (!ehValido) {
                             System.out.println("O nome não é válido! ");
-                            sc.close();
+                            //sc.close();
                             break;
                         }
 
@@ -182,7 +182,7 @@ public class AppMain {
                                 boolean ehValidoPj = Validacao.validarCNPJ(cnpj);
                                 if (!ehValidoPj) {
                                     System.out.println("O CNPJ não é válido! ");
-                                    sc.close();
+                                    //sc.close();
                                     return;
                                 }
 

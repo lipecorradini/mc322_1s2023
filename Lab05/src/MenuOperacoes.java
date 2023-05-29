@@ -5,7 +5,7 @@ public enum MenuOperacoes {
     CADASTRAR_SEGURADORA(1.3),
     CADASTRAR_FROTA(1.4),
     CADASTRAR_CONDUTOR(1.5),
-    SAIR_CADASTRAR(1.5),
+    SAIR_CADASTRAR(1.6),
     
     LISTAR(2),
     LISTAR_CLIENTE_POR_SEGURADORA(2.1),
@@ -31,6 +31,8 @@ public enum MenuOperacoes {
     TRANSFERIR_SEGURO(6),
     
     CALCULAR_RECEITA_SEGURADORA(7),
+
+    AUTORIZAR_CONDUTOR(8),
 
     ERRO(-1);
 

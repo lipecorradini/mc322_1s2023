@@ -113,9 +113,10 @@ public class ClientePJ extends Cliente{
 
 		Scanner sc = new Scanner(System.in);
 		int indexFrota = sc.nextInt();
-        sc.nextLine();
+        //sc.nextLine();
 
 		Frota FrotaEscolhido = listaFrota.get(indexFrota - 1);
+       //sc.close();
 
         return FrotaEscolhido;
 	}

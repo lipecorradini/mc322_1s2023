@@ -271,7 +271,7 @@ public class Seguradora {
         int indexCliente = sc.nextInt();
 
         Cliente clienteEscolhido = listaClientes.get(indexCliente - 1);
-        // sc.close();
+        //sc.close();
         return clienteEscolhido;
     }
 

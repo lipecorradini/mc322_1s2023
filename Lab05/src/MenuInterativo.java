@@ -23,14 +23,14 @@ public class MenuInterativo {
 
         listaSeguradora.add(seguradora);
         boolean validacaoContinuar = true;
-        do{
+        do {
             int cont = 1;
             System.out.println("---------- SELECIONANDO SEGURADORA -----------");
 
             System.out.println("Digite o número referente à Seguradora desejada: ");
-            for(Seguradora seguradoraIterada : listaSeguradora){
+            for (Seguradora seguradoraIterada : listaSeguradora) {
                 System.out.println(cont + ") " + seguradoraIterada.getNome());
-                cont ++;
+                cont++;
             }
             int indiceSeguradora = sc.nextInt();
             seguradoraEscolhida = listaSeguradora.get(indiceSeguradora - 1);
@@ -55,7 +55,8 @@ public class MenuInterativo {
         System.out.println("Olá, seja bem vindo à seguradora!");
         System.out.println("Digite o número correto para a respectiva ação:");
         System.out.println("1) Cadastros \n2) Listar \n3) Excluir \n4) Gerar Sinistro");
-        System.out.println("5) Gerar Seguro \n6) Transferir Seguro\n7) Calcular receita Seguradora \n0) Sair");
+        System.out.println(
+                "5) Gerar Seguro \n6) Transferir Seguro\n7) Calcular receita Seguradora \n8) Autorizar/ Desautorizar Condutor\n0) Sair");
         System.out.println("---------------------------------------------------");
 
         double operacao = sc.nextDouble();
@@ -264,11 +265,11 @@ public class MenuInterativo {
                         System.out.println("Data de Nascimento [dd/MMM/yyyy]: ");
                         String dataNascimentoCondutor = sc.nextLine();
                         LocalDate dataNascimentoCondutorDate = LocalDate.parse(dataNascimentoCondutor, dtf);
-                        
-                        Seguro seguro = seguradora.escolherSeguro();
-                        Condutor condutor = new Condutor(cpfCondutor, nomeCondutor, telefoneCondutor, enderecoCondutor, emailCondutor, dataNascimentoCondutorDate);
-                        seguro.cadastrarCondutor(condutor);
 
+                        Seguro seguro = seguradora.escolherSeguro();
+                        Condutor condutor = new Condutor(cpfCondutor, nomeCondutor, telefoneCondutor, enderecoCondutor,
+                                emailCondutor, dataNascimentoCondutorDate);
+                        seguro.cadastrarCondutor(condutor);
 
                     case SAIR_CADASTRAR:
 
@@ -294,7 +295,7 @@ public class MenuInterativo {
 
                     case LISTAR_CLIENTE_POR_SEGURADORA:
                         // Listar os clientesPF e clientesPJ por seguradora
-                        System.out.println("Quais tipos de Cliente quer listar? \n1) ClientePF \n2) ClientePJ]");
+                        System.out.println("Quais tipos de Cliente quer listar? \n1) ClientePF \n2) ClientePJ");
                         int tipoCliente = sc.nextInt();
                         sc.nextLine();
 
@@ -495,6 +496,26 @@ public class MenuInterativo {
                 System.out.println("---------- CALCULANDO RECEITA SEGURADORA -----------");
 
                 seguradora.calcularReceita();
+                break;
+
+            case AUTORIZAR_CONDUTOR:
+                System.out.println("---------- AUTORIZAÇÃO CONDUTOR -----------");
+
+                Seguro seguroEscolhido = seguradora.escolherSeguro();
+                Condutor condutorParaAutorizar = seguroEscolhido.escolherCondutor();
+                System.out.println("Qual ação deseja realizar? ");
+                System.out.println("1) Autorizar Condutor\n2) Desautorizar Condutor");
+                int acaoCondutor = sc.nextInt();
+                switch (acaoCondutor) {
+
+                    case 1:
+                        seguroEscolhido.autorizarCondutor(condutorParaAutorizar);
+                        break;
+
+                    case 2:
+                        seguroEscolhido.desautorizarCondutor(condutorParaAutorizar);
+                        break;
+                }
                 break;
 
             case SAIR:

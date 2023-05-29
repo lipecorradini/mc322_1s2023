@@ -140,10 +140,10 @@ public abstract class Seguro {
         System.out.println("Digite o número referente ao Condutor: \n");
         int cont = 1;
         for (Condutor condutorCadastrado : getListaCondutores()) {
-            if(condutorCadastrado.getAutorizado()){
-                System.out.println(cont + ") " + condutorCadastrado.getNome());
-                cont++;
-            }
+        
+            System.out.println(cont + ") " + condutorCadastrado.getNome());
+            cont++;
+        
         }
 
         int numeroCondutor = sc.nextInt();
