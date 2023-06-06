@@ -33,6 +33,9 @@ public class SeguroPF extends Seguro {
     }
 
     public double calcularValor(){
+        /*
+         * Calcula o valor do Seguro PF
+         */
 
         int qtdeSinistroCondutores = 0;
         for(Condutor condutorCadastrado : getListaCondutores()){

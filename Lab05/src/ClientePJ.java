@@ -50,7 +50,10 @@ public class ClientePJ extends Cliente{
         getVeiculosPorFrota();
     }
 
-    public void getVeiculosPorFrota(){ // retornar arraylist
+    public void getVeiculosPorFrota(){
+        /*
+         * Mostra para o cliente todos os veículos de cada frota cadastrada
+         */
 
         int contFrota = 0, contVeiculos = 0;
         for(Frota frotaCadastrada: listaFrota){
@@ -66,6 +69,9 @@ public class ClientePJ extends Cliente{
     }
 
     public boolean cadastrarFrota(Frota frota){
+        /*
+         * Cadastra uma frota no sistema
+         */
 
         if(listaFrota.contains(frota)){
             System.out.println("A frota de código " + frota.getCode() + "já está cadastrada em nosso sistema!");
@@ -78,6 +84,9 @@ public class ClientePJ extends Cliente{
     }
 
     public boolean atualizarFrota(Veiculo veiculo){
+        /*
+         * Se a frota já contém o veículo, remove-o. Se não, o adiciona no sistema.
+         */
 
         Frota frota = escolherFrota();
 
@@ -94,6 +103,9 @@ public class ClientePJ extends Cliente{
     }
 
     public boolean atualizarFrota(){
+        /*
+         * Remove uma frota do sistema.
+         */
 
         Frota frota = escolherFrota();
         listaFrota.remove(frota);
@@ -103,6 +115,9 @@ public class ClientePJ extends Cliente{
     }
 
     public Frota escolherFrota(){
+        /*
+		 * Passa por todas as frotas para que o cliente possa escolher
+		 */
 		
 		int count = 1;
 

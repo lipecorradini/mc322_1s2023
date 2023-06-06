@@ -21,6 +21,9 @@ public class Frota {
     }
 
     public String generateCode() {
+        /*
+         * Gera uma String para identificar a frota
+         */
 
         String code = "";
         int min = 65, limite = 57;
@@ -38,6 +41,9 @@ public class Frota {
     }
 
     public boolean addVeiculo(Veiculo veiculo) {
+        /*
+         * Adiciona um veículo à frota
+         */
 
         listaVeiculos.add(veiculo);
         System.out.println("Veículo de placa " + veiculo.getPlaca() + " adicionado!");
@@ -46,6 +52,9 @@ public class Frota {
     }
 
     public boolean removerVeiculo() {
+        /*
+         * Remove um veículo da frota
+         */
 
         Veiculo veiculo = escolherVeiculo();
 
@@ -56,6 +65,9 @@ public class Frota {
     }
 
     public Veiculo escolherVeiculo(){
+        /*
+		 * Passa por todos os veículos da frota para que o cliente possa escolher
+		 */
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite o número referente ao Veiculo: \n");
@@ -69,7 +81,6 @@ public class Frota {
         sc.nextLine();
         
         Veiculo VeiculoEscolhido = getListaVeiculos().get(numeroVeiculo - 1);
-        //sc.close();
         
         return VeiculoEscolhido;
 

@@ -1,7 +1,7 @@
 public class Validacao {
         
         public static boolean validarCNPJ(String CNPJ){
-            // check if the cnpj itself is valid or not
+            // conferindo a validação do cnpj
     
             String CNPJNumerico = CNPJ.replaceAll( "[^\\d]", "" );
             

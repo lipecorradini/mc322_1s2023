@@ -12,6 +12,7 @@ public class SeguroPJ extends Seguro {
         super(dataInicio, seguradora);
         this.frota = frota;
         this.cliente = cliente;
+        super.setValorMensal(calcularValor());
     }
 
     public Frota getFrota() {
@@ -31,6 +32,9 @@ public class SeguroPJ extends Seguro {
     }
 
     public double calcularValor() {
+        /*
+         * Calcula o valor do Seguro PJ
+         */
 
         int qtdeSinistroCondutores = 0;
         for (Condutor condutorCadastrado : getListaCondutores()) {

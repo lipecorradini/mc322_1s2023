@@ -111,6 +111,9 @@ public class ClientePF extends Cliente {
 	}
 
 	public Veiculo escolherVeiculo(){
+		/*
+		 * Passa por todos os veículos para que o cliente possa escolher
+		 */
 		
 		int count = 1;
 
@@ -121,13 +124,10 @@ public class ClientePF extends Cliente {
 		}
 
 		Scanner sc = new Scanner(System.in);
-		int indexVeiculo = sc.nextInt();
-		//sc.nextLine();
-		
+		int indexVeiculo = sc.nextInt();		
 
 		Veiculo veiculoEscolhido = listaVeiculos.get(indexVeiculo - 1);
 
-		//sc.close();
 		return veiculoEscolhido;
 	}
 

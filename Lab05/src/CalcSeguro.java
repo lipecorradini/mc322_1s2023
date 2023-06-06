@@ -15,6 +15,9 @@ public enum CalcSeguro {
     }
 
     public static CalcSeguro getFatorIdade(int idade){
+        /*
+         * Retorna o fator correspondente a idade
+         */
         if(idade >= 18 && idade < 30) return FATOR_30;
         else if(idade >= 30 && idade < 60) return FATOR_30_60;
         else return FATOR_60_90;

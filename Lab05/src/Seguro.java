@@ -94,6 +94,9 @@ public abstract class Seguro {
     }
 
     public boolean autorizarCondutor(Condutor condutor) {
+        /*
+         * Autoriza o condutor
+         */
 
         if (getListaCondutores().contains(condutor)) {
             condutor.setEstaAutorizado(true);
@@ -107,6 +110,9 @@ public abstract class Seguro {
     }
 
     public boolean desautorizarCondutor(Condutor condutor) {
+        /*
+         * Desautoriza o condutor
+         */
 
         if (getListaCondutores().contains(condutor)) {
             condutor.setEstaAutorizado(false);
@@ -135,6 +141,9 @@ public abstract class Seguro {
     }
     
     public Condutor escolherCondutor() {
+        /*
+		 * Passa por todos os condutores para que o cliente possa escolher
+		*/
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite o número referente ao Condutor: \n");
@@ -156,6 +165,9 @@ public abstract class Seguro {
     }
 
     public void listarSinistros(){
+        /*
+         * Lista todos os sinistros de um seguro
+         */
 
         for(Sinistro sinistro : listaSinistros){
             System.out.println("    -" + sinistro.getId() + " do condutor " + sinistro.getCondutor());
@@ -163,6 +175,9 @@ public abstract class Seguro {
     }
 
     public void excluirSinistro(){
+        /*
+         * Exclui um sinistro do seguro
+         */
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite o número referente ao Sinistro: \n");
@@ -184,6 +199,9 @@ public abstract class Seguro {
     }
 
     public void excluirCondutor(){
+        /*
+         * Exclui um condutor do Seguro
+         */
 
         Condutor condutor = escolherCondutor();
         listaCondutores.remove(condutor);
@@ -193,6 +211,9 @@ public abstract class Seguro {
     }
 
     public void cadastrarCondutor(Condutor condutor){
+        /*
+         * Cadastra um condutor no Seguro
+         */
 
         listaCondutores.add(condutor);
         System.out.println("O condutor " + condutor.getNome() + " foi adicionado ao sistema! ");

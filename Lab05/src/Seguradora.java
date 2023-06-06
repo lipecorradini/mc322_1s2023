@@ -161,6 +161,9 @@ public class Seguradora {
     }
 
     public boolean gerarSeguro() {
+        /*
+         * Gera um seguro para um cliente específico
+         */
 
         Cliente cliente = escolherCliente();
 
@@ -185,6 +188,9 @@ public class Seguradora {
     }
 
     public boolean cancelarSeguro() {
+        /*
+         * Cancela o seguro de um cliente específico
+         */
 
         int cont = 1;
         System.out.println("Digite o número do Seguro que quer cancelar: ");
@@ -197,8 +203,6 @@ public class Seguradora {
         int indexSeguro = sc.nextInt();
         sc.nextLine();
 
-        // sc.close();
-
         Seguro seguroCancelado = listaSeguros.get(indexSeguro);
         listaSeguros.remove(seguroCancelado);
         System.out.println("Seguro de índice " + seguroCancelado.getId() + " cancelado!");
@@ -208,6 +212,9 @@ public class Seguradora {
     }
 
     public ArrayList<Seguro> getSegurosPorCliente() {
+        /*
+         * Retorna os seguros por cliente cadastrados na seguradora
+         */
 
         Cliente cliente = escolherCliente();
 
@@ -231,6 +238,9 @@ public class Seguradora {
     }
 
     public ArrayList<Sinistro> getSinistrosPorCliente() {
+        /*
+         * Retorna os sinistros por cliente cadastrados na seguradora
+         */
 
         Cliente cliente = escolherCliente();
         ArrayList<Sinistro> listaAuxiliar = new ArrayList<Sinistro>();
@@ -258,6 +268,9 @@ public class Seguradora {
     }
 
     public Cliente escolherCliente() {
+        /*
+		 * Passa por todos os clientes da seguradora para que o usuário possa escolher
+		 */
 
         int count = 1;
 
@@ -276,6 +289,9 @@ public class Seguradora {
     }
 
     public Seguro escolherSeguro(){
+        /*
+		 * Passa por todos os Seguros para que o usuário possa escolher
+		 */
 
         int count = 1;
 
@@ -289,12 +305,14 @@ public class Seguradora {
         int indexSeguro = sc.nextInt();
 
         Seguro SeguroEscolhido = listaSeguros.get(indexSeguro - 1);
-        // sc.close();
+
         return SeguroEscolhido;
     }
 
     public void removerSeguro(){
-        
+        /*
+        Remove um seguro escolhido pelo usuário
+        */        
         Seguro seguro = escolherSeguro();
         listaSeguros.remove(seguro);
         System.out.println("O Seguro de id " + seguro.getId() + " foi removido com sucesso! ");
